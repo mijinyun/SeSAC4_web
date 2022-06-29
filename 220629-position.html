@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>css_position</title>
+        <style>
+            .div1 {
+                background-color: red;
+                width:100px;
+                height:100px;
+                border-radius: 50px;
+            }
+            
+            .div2 {
+                background-color: greenyellow;
+                width:100px;
+                height:100px;
+                border-radius: 50px;
+                left:100px;
+                position:relative;
+
+                
+            }
+
+            .div3 {
+                position:fixed;
+                left:50px;
+                background-color: yellow;
+                width:100px;
+                height:100px;
+                border-radius: 50px;
+
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="div1"></div>
+        <div class="div2">
+            <div class="div3"></div>
+        </div>
+
+    </body>
+</html>
