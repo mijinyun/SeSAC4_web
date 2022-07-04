@@ -1,0 +1,54 @@
+<html>
+    <head>
+
+        <script>
+            
+            function cal() {
+
+                var value1 = Number(document.getElementById("input1").value);
+                var value2 = Number(document.getElementById("input2").value);
+                var operator = document.getElementById("input3").value;
+                var res;
+
+                if (operator == "+") {
+                    res = value1 + value2;
+                }
+                else if (operator == "-") {
+                    res = value1 - value2;
+                }
+
+                else if (operator == "*") {
+                    res = value1 * value2;
+                }
+                
+                else if (operator == "/") {
+                    res = value1 / value2;
+                }
+
+                document.getElementById("input4").value = res;
+            }
+
+            function reset() {
+                document.getElementById("input1").value=" "
+                document.getElementById("input21").value=" "
+                document.getElementById("input3").value=" "
+                document.getElementById("input4").value=" "
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div>값1:<input type="text" id="input1"></div>
+        <div>값2:<input type="text" id="input2"></div>
+        <div>연산자:<input type="text" id="input3"></div>
+        <div>결과:<input type="text" id="input4"></div>
+        <br>
+        <br>
+        <button type="button" onclick="cal()">계산하기</button>
+        <button type="button" onclick="reset()">초기화</button>
+        
+        
+        
+    </body>
+</html>
