@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+            var table1=document.createElement("table");
+            var tr1=document.createElement("tr");
+            var td1=document.createElement("td");
+            td1=document.createTextNode("번호");
+            var td2=document.createElement("td");
+            td2=document.createTextNode("작성자");
+            var td3=document.createElement("td");
+            td3=document.createTextNode("내용");
+            var td4=document.createElement("td");
+            td4=document.createTextNode("작성일");
+
+
+
+
+
+            /*td1.innerText="번호",
+            td2.innerText="작성자",
+            td3.innerText="내용",
+            td4.innerText="작성일";*/
+            tr1.style="text-align:center;"
+            tr1.style="font-weight:bold;"
+            table1.style.border="1px solid";
+            table1.style.padding="3px";
+
+
+            
+        function add() {
+
+            
+            table1.appendChild(tr1);
+            tr1.appendChild(td1);
+            tr1.appendChild(td2);
+            tr1.appendChild(td3);
+            tr1.appendChild(td4);
+            
+            
+            var user1=String(document.getElementById("user").value);
+            var input2=String(document.getElementById("input1").value);
+            var date=new Date();
+            var number ;
+            
+            for (i=0; i < user1.length; i++) {
+                number = i+1;
+            }
+
+            
+            td1.innerText=number;
+            td2.innerText=user1;
+            td3.innerText=input2;
+            td4.innerText=date;
+
+
+
+
+
+        }
+
+    </script>
+
+
+</head>
+<body>
+    <div>방명록입니다.</div>
+    <br>
+    작성자<input type="text" name="user" id="user"><br>
+    내용 <input type="text" name="input1" id="input1"><br>
+    <br>
+    <button type="button" onclick="add()">작성</button>
+    <br>
+    <br>
+
+</body>
+</html>
