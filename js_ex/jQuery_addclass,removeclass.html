@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        div {
+            width: 100px;
+            height: 100px;
+        }
+
+        .first {
+            background-color: red;
+        }
+
+        .second {
+            background-color: yellow;
+        }
+
+        .third {
+            background-color: blue;
+        }
+
+        .sizeup {
+            font-size:30px;
+        }
+    </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        function bigger() {
+            $(".first").addClass("sizeup");
+        }
+
+        function white() {
+            $(".second").removeClass("second")
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="jquery-ui.min.js"></script>
+    <script src="jquery-ui.js"></script>
+
+</head>
+<body>
+    <button type="button" onclick="bigger();" >커져라</button>
+    <button type="button" onclick="white();">하얘져라</button>
+    <div class="first">가나다</div>
+    <div class="second">라마바</div>
+    <div class="third">사아자</div>
+</body>
+</html>

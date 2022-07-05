@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            background-color: green;
+        }
+
+        .b {
+            background-color: red;
+        }
+
+        p {
+            background-color: yellow;
+        }
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script>
+        function a() {
+            $(".b").html("<p> Hello </p>");
+        }
+
+    </script>
+</head>
+<body>
+    <span class="b">안녕?</span>
+
+    <span onclick="a();">클릭</span>
+</body>
+</html>
