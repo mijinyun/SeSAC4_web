@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function add() {
+            var tb=document.getElementById("table1");
+            var row = tb.insertRow();
+            var cell1 = row.insertCell();
+            var cell2= row.insertCell();
+            var cell3 = row.insertCell();
+            var cell4 = row.insertCell();
+
+                        
+            var rows=document.getElementsByTagName("tr");
+            /*for (var number=1; number<rows.length; number++) {
+                    number ;
+            }*/ // 굳이 for문을 안쓰고 아래 코드처럼만 진행해도 된다!
+            var number=rows.length;
+
+
+            var user1=String(document.getElementById("user").value);
+            var input2=String(document.getElementById("input1").value);
+            var date = new Date();
+            
+
+
+
+            cell1.innerHTML = number-1;
+            cell2.innerHTML = user1;
+            cell3.innerHTML = input2;
+            cell4.innerHTML = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + "   " + date.getHours() + ':' + date.getMinutes();
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <p>방명록입니다.</p>
+    <div style="font-weight: bold;">작성자 <input type="text" id="user"></div>
+    <div style="font-weight: bold;">&nbsp;내용&nbsp;&nbsp;&nbsp;<input type="text" id="input1" size="40"></div>
+    <br>
+
+    <button type="button" onclick="add()">작성</button>
+    <br>
+    <br>
+
+    <table border="1" id="table1" cellpadding="10">
+        <tr style="font-weight: bold; text-align: center;">
+            <td>번호</td>
+            <td>작성자</td>
+            <td width="200">내용</td>
+            <td width="130">작성일</td>
+        </tr>
+
+        
+
+</body>
+</html>
