@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            function setValue() {
+                //document.getElementById("input1").value="~~~"
+                $("#input1").val("setting");
+            }
+
+            function getValue() {
+                alert($("#input1").val());
+            }
+
+            function changeStyle() {
+                //var span = document.querySelector("span");
+                //span.style="font-size:20px; color:red;"
+                $("span").css("font-size","28px;");
+                $("span").css("color","blue");     // 폰트 사이즈에는 ;를 다는데 왜 칼라에는 ;가 없는지?
+
+                
+            }
+
+            function changeText() {
+                //var span = document.querySelector("span");
+                //span.innerText="반가워";
+                $("span").text("반가워");
+            }
+
+            function changeAttribute() {
+                //var img = document.querySelector("img");
+                ///img.width="100";
+                $("img").attr("width","100");
+            }
+
+            function changeHTML() {
+                //var p = document.querySelector("p");
+                //p.innerText="<h1>반갑슴다</h1>";
+
+                $("p").html("<h1>반가워용</h1>");
+            }
+
+            
+        </script>
+    </head>
+    
+        <input type="text" id="input1">
+        <button type="button" onclick="setValue();">setValue</button>
+        <button type="button" onclick="getValue();">getValue</button>
+        <br>
+        <span>안녕</span>
+        <img src="">
+        <button type="button" onclick="changeStyle();">changeStyle</button>
+        <button type="button" onclick="changeText();">changeText</button>
+        <button type="button" onclick="changeAttribute();">changeAttribute</button>
+        <p style="background-color: orange;">p태그</p>
+        <button type="button" onclick="changeHTML();">changeHTML</button>
+    </body>
+</html>

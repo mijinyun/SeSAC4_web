@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function add() {
+             
+            var name = document.getElementById("user").value;
+            var content = document.getElementById("input1").value;
+            var date=new Date();
+
+            var table = document.getElementById("table1");
+            var tr1 = document.createById("tr");
+            
+            var td1=document.createById("td");
+            td1.innerText =1 ;  // 아래에서 설명. 두가지 방식.
+            var td1=document.createById("td");
+            td2.innerText =name ;
+            var td1=document.createById("td");
+            td3.innerText =content ;
+            var td1=document.createById("td");
+            td4.innerText =date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDay() + "  " + date.getHours() + ":" + date.getMinutes();
+            
+            // 1. tr개수로 넘버 설정하기
+            
+            tr1.innertext=documnet.querySelectorAll("#table tr").length;  
+            // 테이블의 후손인 tr의 갯수 구하기 
+            
+            // document에서는 html자체가 구조를 잡기 때문에 table에서는 tbody가 추가됨. 하지만 동적으로 테이블을 추가할 경우에는 tbody가 아닌 구조에서 추가가됨.
+            // 즉, 기본적으로 브라우저에서 html 구조를 잡는것. (동적으로 테이블을 생성한다는게 뭔말이여)
+
+            
+            /*
+            
+            2. 전역변수로 넘버 설정하기 
+            어디서든 접근이 가능한것. function 바깥에서 변수 선언 
+            function add(){} 바깥에
+            var cnt = 1;
+            function a(){}
+
+
+            td1.innerText=cnt;
+            cnt= cnt +1;
+
+            */
+
+
+
+            tr1.appendChild(td1);
+            tr1.appendChild(td2);
+            tr1.appendChild(td3);
+            tr1.appendChild(td4);
+            table.appendChild(tr1);
+
+
+            //아래는 내 방식
+            /*            
+            var rows=document.getElementsByTagName("tr");
+            var number=rows.length;
+            //
+            for (var number=1; number<rows.length; number++) {
+                    number ;
+            }*/ // 굳이 for문을 안쓰고 아래 코드처럼만 진행해도 된다!
+            
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <p>방명록입니다.</p>
+    <div style="font-weight: bold;">작성자 <input type="text" id="user"></div>
+    <div style="font-weight: bold;">&nbsp;내용&nbsp;&nbsp;&nbsp;<input type="text" id="input1" size="40"></div>
+    <br>
+
+    <button type="button" onclick="add()">작성</button> 
+    //만약 onclick에 wirte()함수로 쓰게되면 클릭하면 하얀창이 나타날 수 있음. 왜냐면 dom이 html보다 상위이기때문에 write()는 dom 함수...? 이건 더 찾아보기)
+    <br>
+    <br>
+
+    <table border="1" id="table1" cellpadding="10">
+        <tr style="font-weight: bold; text-align: center;">
+            <td>번호</td>
+            <td>작성자</td>
+            <td width="200">내용</td>
+            <td width="130">작성일</td>
+        </tr>
+
+        
+
+</body>
+</html>

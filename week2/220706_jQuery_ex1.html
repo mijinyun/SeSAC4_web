@@ -1,0 +1,44 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+            border-style: solid;
+            border-color:orange;
+            border-style: solid;
+            border-radius: 20px;
+        }
+    </style>
+
+    <script>
+        function apple() {
+            $("img").attr("src","apple.jpg");
+        }
+        function banana() {
+            $("img").attr("src","banana.jpg");
+        }
+        function grap() {
+            $("img").attr("src","grap.jpg");
+        }
+        function peach() {
+            $("img").attr("src","peach.jpg");
+        }
+        
+    </script>
+
+
+</head>
+<body>
+    
+    <img src="" title="과일을 골라볼게요" style="text-align: center;">
+    <br>
+    <button type="button" onclick="apple()">사과</button>
+    <button type="button" onclick="banana()">바나나</button>
+    <button type="button" onclick="grap()">포도</button>
+    <button type="button" onclick="peach()">복숭아</button>
+</body>
+</html>

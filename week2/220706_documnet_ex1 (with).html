@@ -1,0 +1,69 @@
+<html>
+    <head>
+
+        <script>
+            
+            function cal() {
+
+                var value1 = Number(document.getElementById("input1").value);
+                var value2 = Number(document.getElementById("input2").value);
+                var operator = document.getElementById("input3").value;
+                
+                num1 = parseInt(num1);
+                num2 = parseInt(num2);   // 또는 Number(num2) 로 해도됨.
+
+                var result = document.getElementById("res");
+
+                switch (op) {
+                    case "+":
+                        result.value=num1 + num2;
+                    break;
+
+                    case "-":
+                        result.value=num1 - num2;
+                    break;
+
+                    case "*":
+                        result.value=num1 * num2;
+                    break;
+
+                    case "/":
+                        result.value=num1 / num2;
+                    break;
+                }
+
+
+               
+            }
+
+            function reset() {
+                document.getElementById("input1").value=" "
+                document.getElementById("input21").value=" "
+                document.getElementById("input3").value=" "
+                document.getElementById("input4").value=" "
+            }
+
+            /* var inputs=document.querySelectorAll("input");  input 태그들이 모두 선택이 된것
+             console. log (inputs[0]);
+            or for (var i=0; i < inputs.length; i++) {
+                inputs[i].value = "";*/
+            
+
+        </script>
+
+    </head>
+
+    <body>
+        <div>값1:<input type="text" id="input1"></div>
+        <div>값2:<input type="text" id="input2"></div>
+        <div>연산자:<input type="text" id="input3"></div>
+        <div>결과:<input type="text" id="input4"></div>
+        <br>
+        <br>
+        <button type="button" onclick="cal()">계산하기</button>
+        <button type="button" onclick="reset()">초기화</button>
+        
+        
+        
+    </body>
+</html>
