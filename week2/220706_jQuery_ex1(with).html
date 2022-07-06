@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+    <style>
+        
+    </style>
+
+    <script>
+        function change(fruit) {
+            $("img").attr("src",fruit + ".jpg");
+        }
+        
+        
+    </script>
+
+
+</head>
+<body>
+    
+    <img width="500" height="500">
+    <br>
+    <button type="button" onclick="change('apple')">사과</button>
+    <button type="button" onclick="change('banana')">바나나</button>
+    <button type="button" onclick="change('grape')">포도</button>
+    <button type="button" onclick="change('peach')">복숭아</button>
+    
+</body>
+</html>

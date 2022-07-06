@@ -1,0 +1,72 @@
+<head>
+    
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery-ui-1.13.1.custom/jquery-ui.css"> 
+
+    <style>
+        div {
+            width: 200px;
+            height:200px; 
+        }
+        div:hover {
+            cursor:pointer;
+        }
+        .css1 {
+            background-color: red;
+        }
+
+        .css2 {
+            background-color: yellow;
+        }
+
+        .css3 {
+            background-color: blue;
+        }
+
+        .css4 {
+            background-color: green;
+        }
+         
+
+    </style>
+    <script>
+        var colors=['css1' ,'css2','css3','css4'];
+        
+        function changecolor() {
+            var now = ($("div").attr("class"));
+            var i =colors.indexof(now);
+        }
+
+        if (i ==colors.length -1) {
+            $("div").switchClass(now,colors[0]);
+        }
+
+        else {
+            $("div").switchClass(now,colors[i+1]);
+        }
+       
+        /*        
+        if ($("div").hasClass("css1")) {
+                $("div").switchClass("css1","css2");  
+            }
+            else if ($("div").hasClass("css2")) {
+                $("div").switchClass("css2","css3");
+            }
+            else if ($("div").hasClass("css3")) {
+                $("div").switchClass("css3","css4");
+            }
+            else {
+                $("div").switchClass("css4","css1");
+            }
+        }*/
+
+
+    </script>
+</head>
+<body>
+    <div class="css1" onclick="changecolor()"></div>
+</body>
+</html>

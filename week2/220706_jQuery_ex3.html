@@ -1,0 +1,122 @@
+<head>
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        td:hover {
+            font-size:large;
+            cursor:pointer;
+        }
+
+        div {
+            display: inline-block;
+            position: relative;
+        }
+        table {
+            display: inline-block;
+            position: absolute;
+            left:300px;
+            top:50px;
+        }
+
+    </style>
+
+    <script>
+        
+        
+        function moveday() {
+            var select1 = Number(document.getElementById("select").value);
+            document.getElementById("day").value = select1;
+
+        }
+
+        function addexp() {
+            var exp1=document.getElementById("exp").value;
+            $("#select").append(exp1);
+        }
+
+        $("td").addClass("td1")
+
+
+    </script>
+
+
+</head>
+<body>
+    <div>
+    날짜&nbsp;:&nbsp;<input type="text" id="day"><br>
+    내용&nbsp;:&nbsp;<input type="text" id="exp"><br>
+    <br>
+    <button type="button" onclick="addexp()">작성</button>
+    </div>
+    <table cellpadding="15px;" onclick="moveday()" id="select" style="text-align: center;">
+        <caption style="color:green; font-size: 1.5em;">2022년 7월</caption>
+        <tr>
+            <td style="color:red;">日</td>
+            <td>月</td>
+            <td>火</td>
+            <td>水</td>
+            <td>木</td>
+            <td>金</td>
+            <td style="color: blue;">土</td>
+        </tr>
+
+        <tr>
+            <td style="color:red;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td style="color: blue;">2</td>
+        </tr>
+
+        <tr>
+            <td style="color:red;">3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td style="color: blue;">9</td>
+        </tr>
+        <tr>
+            <td style="color:red;">10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td style="color: blue;">16</td>
+        </tr>
+        <tr>
+            <td style="color:red;">17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td style="color: blue;">23</td>
+        </tr>
+        <tr>
+            <td style="color:red;">24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td style="color: blue;">30</td>
+        </tr>
+        <tr>
+            <td style="color:red;">31</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="color: blue;"></td>
+        </tr>
+
+    </table>
+</body>
+</html>
