@@ -25,7 +25,7 @@
         td {
             width:40px;
             height: 50px;
-            vertical-align: top;
+            vertical-align: top; /*cell 내부에서 수직정렬을 말하는 것*/
         }
         
 
@@ -119,13 +119,15 @@
         
         $("td").on('click', function( a ) {
             target=a.currentTarget;
-            
+            // currentTarget : 이벤트생성위치 , target:이벤트 발생위치
             console.log(target);
             /*alert($(a.currentTarget).text());*/
             /*document.getElementById("day").value = ($(a.currentTarget).text()); */
             $("#day").val(($(a.currentTarget).text())); 
 
         });
+        /*click이 아닌 .on('click') 을 쓰는 이유?
+        on을 사용할 경우 메모리를 덜 먹고 동적으로 생성되는 요소들이 잘 작동하기때문.*/
 
 
 
