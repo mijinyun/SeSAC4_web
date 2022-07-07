@@ -1,10 +1,12 @@
+<!DOCTYPE html>
 <head>
-    <title>Document</title>
+    <title>Schedule</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <style>
         td:hover {
-            font-size:large;
+            font-size:medium;
+            font-weight: bold;
             cursor:pointer;
         }
 
@@ -17,28 +19,17 @@
             position: absolute;
             left:300px;
             top:50px;
+            
+                        
         }
+        td {
+            width:40px;
+            height: 50px;
+            vertical-align: top;
+        }
+        
 
     </style>
-
-    <script>
-        
-        
-        function moveday() {
-            var select1 = Number(document.getElementById("select").value);
-            document.getElementById("day").value = select1;
-
-        }
-
-        function addexp() {
-            var exp1=document.getElementById("exp").value;
-            $("#select").append(exp1);
-        }
-
-        $("td").addClass("td1")
-
-
-    </script>
 
 
 </head>
@@ -47,9 +38,9 @@
     날짜&nbsp;:&nbsp;<input type="text" id="day"><br>
     내용&nbsp;:&nbsp;<input type="text" id="exp"><br>
     <br>
-    <button type="button" onclick="addexp()">작성</button>
+    <button type="button" onclick='expClick()'>작성</button>
     </div>
-    <table cellpadding="15px;" onclick="moveday()" id="select" style="text-align: center;">
+    <table cellspacing="0" cellpadding="30px;" style="text-align:center;">
         <caption style="color:green; font-size: 1.5em;">2022년 7월</caption>
         <tr>
             <td style="color:red;">日</td>
@@ -60,6 +51,7 @@
             <td>金</td>
             <td style="color: blue;">土</td>
         </tr>
+        
 
         <tr>
             <td style="color:red;"></td>
@@ -80,6 +72,7 @@
             <td>8</td>
             <td style="color: blue;">9</td>
         </tr>
+
         <tr>
             <td style="color:red;">10</td>
             <td>11</td>
@@ -89,6 +82,7 @@
             <td>15</td>
             <td style="color: blue;">16</td>
         </tr>
+
         <tr>
             <td style="color:red;">17</td>
             <td>18</td>
@@ -98,6 +92,7 @@
             <td>22</td>
             <td style="color: blue;">23</td>
         </tr>
+
         <tr>
             <td style="color:red;">24</td>
             <td>25</td>
@@ -107,6 +102,7 @@
             <td>29</td>
             <td style="color: blue;">30</td>
         </tr>
+
         <tr>
             <td style="color:red;">31</td>
             <td></td>
@@ -118,5 +114,29 @@
         </tr>
 
     </table>
+
+    <script>
+        
+        $("td").on('click', function( a ) {
+            target=a.currentTarget;
+            
+            console.log(target);
+            /*alert($(a.currentTarget).text());*/
+            /*document.getElementById("day").value = ($(a.currentTarget).text()); */
+            $("#day").val(($(a.currentTarget).text())); 
+
+        });
+
+
+
+        function expClick() {
+            /*alert($("td").text($("exp").val()));
+            document.getElementsByTagName("td").innerHTML=document.getElementsById("exp").value;*/
+            
+            $(target).append("<br>"+ $("#exp").val());
+        }
+
+        
+    </script>
 </body>
 </html>
