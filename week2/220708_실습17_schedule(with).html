@@ -106,14 +106,34 @@
             var target;
             
             $("td").on("click", function( obj ){
+                console.log(obj);
                 target = obj.currentTarget; // 현재 선택한 태그 target 변수에 담기 지금, td가 console.log로 나온다.
                 console.log( target );
-                alert( $(obj.currentTarget).text() );
+                $("#date").val($(obj.currentTarget).text());
+                //alert( $(obj.currentTarget).text() );  //obj.currentTarget 이 td인 것임.
             });
 
             function writeSchedule(){
                 // 이 함수를 채워주세요.
+
+                var content = $("#content").val();
+
+                $(target).append("<p>" + content + "</p>");
             }
+
+
+            /*// 2) on.click 필요 없이 날짜를 부르는 방법
+            var ps = document.querySelectorAll("p");
+            for (var i = 0; i <ps.length; i++){
+                console.log(ps[i]);
+                if ($(ps[i]).text() == $ ("#date").val()) {
+                    $(ps[i]).after(
+                        "<h1>ase</h1>"
+                    );
+                    
+                }
+            }
+            */
         </script>
     </body>
 </html>
