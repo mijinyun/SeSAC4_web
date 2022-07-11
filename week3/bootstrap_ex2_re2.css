@@ -1,3 +1,9 @@
+.navbar-brand img {
+    padding-left:1rem;
+}
+
+
+
 .container1 {
     background-color: #FAFAD2;
     width: 100%;
@@ -5,12 +11,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position:relative; */
-    /* padding: 6rem 0; */
-    /* margin: auto; */
 }
 
-
+.main_desc1, .main_desc2, .main_desc3 {
+    padding-left:5rem;
+    padding-right:5rem;
+}
+.main_image1, .main_image2, .main_image3 {
+    padding-left:5rem;
+    padding-right:5rem;
+}
 .container2 {
     background-color: white;
     width: 100%;
@@ -18,15 +28,18 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    /* padding: 6rem 0;
-    margin: auto; */
+
 }
 
 
 .navbar-add-menu {
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    padding-right: 1rem;
+    padding-left:1rem;
+    
+    
 }
 
 
@@ -42,3 +55,7 @@
 }
 
 
+.main_desc1_add {
+    display: flex;
+    
+}
