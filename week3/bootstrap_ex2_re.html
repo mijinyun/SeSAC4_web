@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bootstrap_ex2</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap_ex2.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/34d91fc513.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="C:\Users\user\Downloads\fullPage.js-master (1)\fullPage.js-master\css\js\fullpage.css">
+    <script src="C:\Users\user\Downloads\fullPage.js-master (1)\fullPage.js-master\src\js\fullpage.js"></script>
+
+
 
 </head>
-<body class="full">
-    <nav class="navbar navbar-expand-lg bg-white">
+<body>
+<!-- 
+     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
         <a class="navbar-brand" href="#"><img width="130" height="60" src="logo.png"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,56 +50,28 @@
             </form>
         </div>
         </div>
+
     </nav>
-
-    <div id="home_main">
-        <div class="container1">
-            <div class="home_main_desc">
-            
-                <h1>나만의 공간,
-                <br>
-                우리집
-                </h1>
-                <p class="home_main_desc_text">
-                    새 물건부터 중고 거래까지
-                    <br>
-                    내가 원하는 물건을 우리집에서 찾아보아요.
-                </p>
-                <img class="home_main_image" src="main_image.png">
-            </div>
-        </div>
-    
-    </div>
-
-    <!-- 
-
- <div id="home_main_section1">
-        <div class="home_main_section1_desc d-inline">
-            <h1 class="section1_desc1">내가 만드는 공간</h1>
-            <p>배치도를 자유자재로 그려보세요.</p>
-        </div>
-        <div class="home_main_section_image1 d-inline">
-            <img width="700" heigth="400" src="3d.png">
-        </div>
-    </div>
-
-    <div id="home_main_section2">
-        <div class="home_main_section2_desc">
-            <h1>공간에 맞는 가구만
-                <br>
-                쏙쏙
-            </h1>
-            <p>내가 찾던 새 물건뿐만 아니라 중고거래까지
-                <br>
-                지금 바로 구경해보세요.
-            </p>
-        </div>
-    </div>
-
-
-
-
-     -->
+ -->
    
+    <div id="fullpage">
+        <div class="section1">section1</div>
+        <div class="section2">Section2</div>
+        <div class="section3">section3</div>
+    </div>
+
+
+    <script>$(document).ready(function() {
+        $('#fullpage').fullpage({
+            //options here
+            autoScrolling:true,
+            scrollHorizontally: true
+        });
+    
+        //methods
+        $.fn.fullpage.setAllowScrolling(false);
+    });
+        
+    </script>
 </body>
 </html>
