@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+
+    <style>
+        .list-group {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <button type="button" class="btn btn-primary">Primary</button>
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand">Navbar</span>
+            <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav> 
+
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+
+    <script>
+        document.querySelector('.navbar-toggler').addEventListener('click',function(){
+            document.querySelector('.list-group')[0].classList.toggle('show');
+        });
+        //왜 querySelector에서는 [0] 인덱스를 없애야하는 거지?
+        //document.getElementsByClassName('navbar-toggler')를 했을 때는 [0]인덱스를 꼭 했어야하는디..
+        
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
