@@ -28,7 +28,6 @@
     display:flex;
     justify-content: center;
     align-items: center;
-
 }
 
 
@@ -38,8 +37,8 @@
     font-size: 1.1em;
     padding-right: 1rem;
     padding-left:1rem;
-    
-    
+
+
 }
 
 
@@ -54,3 +53,12 @@
     margin: auto; */
 }
 
+
+.main_desc1_add {
+    display: flex;
+
+}
+
+.home_button {
+    margin-left: 15rem;
+}
