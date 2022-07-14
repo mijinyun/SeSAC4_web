@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform 실습</title>
+    <style>
+        img {
+            width: 2000px;
+            height:800px;
+            transform: skewY(30deg);
+        }
+
+        div {
+            display: inline-block;
+            position: absolute;
+            top:500px;
+        }
+
+        .one {
+            z-index: 2;
+        }
+
+        .two {
+            left:1000px;
+            z-index: 1;
+        }
+
+        .three {
+
+            left:2000px;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="one"><img src=".././week1/window1.jpg"></div>
+    <div class="two"><img src=".././week1/window2.jpg"></div>
+    <div class="three"><img src=".././week1/window3.jpg"></div>
+
+
+    
+</body>
+</html>

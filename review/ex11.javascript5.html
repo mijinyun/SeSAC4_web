@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록 만들기</title>
+
+    <script>
+        function write() {
+            var tb=document.getElementById("table");
+            var row=tb.insertRow();
+            var td1=row.insertCell();
+            var td2=row.insertCell();
+            var td3=row.insertCell();
+            var td4=row.insertCell();
+            var rows=document.getElementsByTagName("tr");
+            var number=rows.length;
+            var date=new Date();
+
+            var user1 = document.getElementById("user").value;
+            var content1 = document.getElementById("content").value;
+
+
+            td1.innerHTML=number-1;
+            td2.innerHTML=user1;
+            td3.innerHTML=content1;
+            td4.innerHTML=date.getFullYear + "-" + (date.getMonth+1) + "-" + date.getDay + " " + date.getHours + ":" + date.getMinutes;
+
+
+        
+        }
+    </script>
+</head>
+<body>
+    <h3>방명록입니다.</h3>
+    <br>
+    <span>작성자</span> <input type="text" id="user"><br>
+    <span>내용</span> <input type="text" id="content" style="width:500px;">
+    <br><br>
+    <button type="button" onclick="write()">작성</button>
+    <br><br>
+
+    <table border="1" cellspacing="1" cellpadding="10" id="table">
+        <tr style="font-weight: bold;">
+            <td>번호</td>
+            <td>작성자</td>
+            <td>내용</td>
+            <td>작성일</td>
+        </tr>
+    </table>
+
+    
+</body>
+</html>
