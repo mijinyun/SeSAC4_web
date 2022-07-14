@@ -10,25 +10,26 @@
         function write() {
             var tb=document.getElementById("table");
             var row=tb.insertRow();
-            var td1=row.insertCell();
-            var td2=row.insertCell();
-            var td3=row.insertCell();
-            var td4=row.insertCell();
+            var cell1=row.insertCell();
+            var cell2=row.insertCell();
+            var cell3=row.insertCell();
+            var cell4=row.insertCell();
+
+
             var rows=document.getElementsByTagName("tr");
             var number=rows.length;
+            
+
+            var user1 = String(document.getElementById("user").value);
+            var content1 = String(document.getElementById("content").value);
             var date=new Date();
 
-            var user1 = document.getElementById("user").value;
-            var content1 = document.getElementById("content").value;
 
+            cell1.innerHTML=number-1;
+            cell2.innerHTML=user1;
+            cell3.innerHTML=content1;
+            cell4.innerHTML=date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
 
-            td1.innerHTML=number-1;
-            td2.innerHTML=user1;
-            td3.innerHTML=content1;
-            td4.innerHTML=date.getFullYear + "-" + (date.getMonth+1) + "-" + date.getDay + " " + date.getHours + ":" + date.getMinutes;
-
-
-        
         }
     </script>
 </head>
