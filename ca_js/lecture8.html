@@ -17,6 +17,12 @@
   background : rgba(0,0,0,0.5);
   z-index : 5;
   padding: 30px;
+  /* visibility: hidden;    
+  /* (display:none;대용) */
+  /* opacity: 0;   */
+   display: none;
+
+  transition: all 1s;
 }
 .white-bg {
   background: white;
@@ -24,11 +30,19 @@
   padding: 30px;
 } 
 
+
+.login_modal {
+    /* visibility: visible;
+    opacity: 1; */
+    display: block;
+
+}
+
     </style>
 </head>
 <body>
-    <button id="login">로그인</button>
-    <div class="black-bg" id="login_modal">
+    
+    <div class="black-bg login_modal">
         <div class="white-bg">
             <h4>로그인하세요</h4>
             <button class="btn btn-danger" id="close">닫기</button>
@@ -37,14 +51,15 @@
 
 
     <script>
-        $('#login_modal').hide();
+        $('.login_modal').hide();
         $('#login').on('click',function(){
-            $("#login_modal").fadeIn();
+            $(".login_modal").show();
         })
         $("#close").on('click',function(){
-            $("#login_modal").hide();
+            $("ogin_modal").hide();
         })
 
+        
     </script>
 </body>
 </html>
