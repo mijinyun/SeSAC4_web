@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b184b1ca-20e8-4d51-8a0f-9fb0b074c3f5" name="sesac4" url="http://27.96.135.21">
+        <fileTransfer rootFolder="/var/www/html" accessType="SFTP" host="27.96.135.21" port="22" sshConfigId="f126d2c7-6756-488a-afe1-737319e30406" sshConfig="root@27.96.135.21:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
