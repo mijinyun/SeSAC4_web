@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 바꾸기</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+    <style>
+        div {
+        width:200px;
+        height:200px;
+        } 
+
+        .color1 {
+            background-color: red;
+        }
+
+        .color2 {
+            background-color: blue;
+        }
+        .color3 {
+            background-color: yellow;
+        }
+
+        .color4 {
+            background-color: green;
+        }
+
+        div:hover {
+            cursor: pointer;
+        }
+    </style> 
+
+</head>
+<body>
+    <div class="color1" onclick="changeColor()"></div>
+
+    <script>
+        function changeColor() {
+            if ($('div').hasClass('color1')) {
+                $('div').switchClass('color1','color2')
+            }
+            else if ($('div').hasClass('color2')) {
+                $('div').switchClass('color2','color3')
+            }
+            else if ($('div').hasClass('color3')) {
+                $('div').switchClass('color3','color4')
+            }
+            else {
+                $('div').switchClass('color4','color1')
+            }
+        }
+    </script>
+</body>
+</html>
