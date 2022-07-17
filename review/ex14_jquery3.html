@@ -8,6 +8,16 @@
     <script src="../jquery-ui-1.13.1.custom/jquery-ui.js"></script>
     
     <title>달력 스케쥴 만들기</title>
+    <style>
+        td:hover {
+            cursor: pointer;
+        }
+        td {
+            width:50px;
+            height: 50px;
+            vertical-align: top;
+        }
+    </style>
 
 </head>
 <body>
@@ -28,8 +38,7 @@
                 <td>Fri</td>
                 <td style="color: blue;">Sat</td>
             </tr>
-            
-    
+          
             <tr>
                 <td style="color:red;"></td>
                 <td></td>
@@ -93,8 +102,17 @@
         </table>
 
         <script>
+            var target;
 
+            $('td').on('click',function(object){
+                target=object.currentTarget;
+                $('#day').val($(target).text());
+               
+            });
 
+            function expClick() {
+                $(target).append('<br>' + ($('#exp').val()));
+            }
         </script>
 </body>
 </html>
