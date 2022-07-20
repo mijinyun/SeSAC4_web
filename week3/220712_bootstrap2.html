@@ -12,13 +12,14 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typeit@8.6.6/dist/index.umd.js"></script>
 
 </head>
 <body>
 
     <nav class="navbar bg-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="bootstrap_ex2_re2.html"><img width="100" height="30" src="carrot_logo.png"></a>
+            <a class="navbar-brand" href="220712_bootstrap2.html"><img width="100" height="30" src="carrot_logo.png"></a>
             <div class="navbar-menu">
               <a style="color:darkorange" class="navbar-add-menu" href="#">중고거래</a>
               <span style="color:darkgray" >|</span>
@@ -73,7 +74,7 @@
   data-aos-once="false"
   data-aos-anchor-placement="top-center">
     <div class="main_desc1 d-lg-block d-sm-block">
-        <h1>당신 근처의
+        <h1 id="title">당신 근처의
             <br>
             당근마켓
         </h1>
@@ -87,10 +88,10 @@
         </div>
     </div>
     
-    <div class="main_image1" >
+    <div class="main_image1 d-lg-block d-sm-none d-xs-none" >
         <img width="400" heigt="600" src="main_image.png">
             </div>
-        </div>     
+    </div>     
 
         <div class="container2" data-aos="fade-up" data-aos-offset="200"
         data-aos-delay="50"
@@ -99,7 +100,7 @@
         data-aos-mirror="true"
         data-aos-once="false"
         data-aos-anchor-placement="top-center">
-            <div class="main_image2">
+            <div class="main_image2 d-lg-block d-sm-none d-xs-none">
 
                 <img width="532" heigt="684" src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-1-cc678e9a217b96f5cb459f7f0684f5ba67706f9889801618b8cf879fbc2c0ea7.webp">
             </div> 
@@ -139,7 +140,7 @@
                 </div>
             
             </div>
-            <div class="main_image3" >
+            <div class="main_image3 d-lg-block d-sm-none d-xs-none" >
                 <img width="546" heigt="740" src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-2-91a2286453bdf82dea16a7f0ee4ceb9dd325eae0e5a2a9967ba72c344bf8f2fc.webp">
             </div>
         </div> 
@@ -158,6 +159,18 @@
       
       
         AOS.init();
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new TypeIt('#title')
+            .pause(1000)
+            // .delete(7,{delay:1000})
+            // .type('academy')
+            .go();
+        })
+
+
+        // @media (min-width:768px)
 
     </script>
 </body>
