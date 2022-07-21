@@ -3,13 +3,13 @@ const fs = require ('fs').promises;
 
 // 27.96.135.21
 const port = 8080;
-const hostname = '27.96.135.21';
+const hostname = '0.0.0.0';
 const server = http.createServer(async function (req, res) {
 
 
     // C:\Users\yunmj\github\week1\larvar2_mod.html'
     try {
-        const data = await fs.readFile('./test.txt');
+        const data = await fs.readFile('../../week1/larva1.html');
         res.writeHead(200);
         res.end(data);
     }
