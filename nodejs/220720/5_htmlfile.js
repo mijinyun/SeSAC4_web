@@ -14,6 +14,7 @@ const server = http.createServer(async function (req, res) {
         res.end(err.message);
     }
 });
+// 동기적 방식 예외처리
 
 
 server.listen(8000, function() {
