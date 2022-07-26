@@ -11,11 +11,11 @@ app.listen(port,function() {
 
 
 app.get('/',function(req,res) {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/1_index.html')
 });
 
 app.get('/write',function(req,res) {
-    res.sendFile(__dirname + '/write.html')
+    res.sendFile(__dirname + '/1_write.html')
 });
 
 //어떤 사람이 /add 경로로 post 요청을 하면... ??를 해주세요~
