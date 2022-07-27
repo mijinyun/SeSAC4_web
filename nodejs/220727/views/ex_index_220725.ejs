@@ -1,0 +1,102 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+    <script>
+        function sendUserForm() {
+            var form =document.getElementById("form_info");
+
+            axios({
+                    method: "get",
+                    url: "http://localhost:8080/receive",
+                    params: {
+                        name: form.name.value,
+                        gender: form.gender.value,
+                        birth: form.birth_year.value + form.birth_month.value + form.birth_day.value,
+                        email: form.email.value,
+                        // hobby: form.hobby.value,
+                        favoritecolor: form.color.value
+                    }
+                })
+                .then ((response) => { return response.data;})  
+                .then ((d)=> {
+                    alert(d.message); 
+                });
+        }
+    </script>
+
+
+</head>
+<body>
+    <h4>폼 전송 - 실습</h4>
+    <form id="form_info" method="GET"> 
+        <!-- action="/receive"  -->
+        <fieldset>
+            <legend>필수 입력</legend>
+                <label>이름
+                    <input type="text" name="name" required><br>
+                </label>
+                <br>
+                성별
+                <input type="radio" name="gender" id="gender_1" value="남" required>
+                    <label for = "gender_1">남</label>
+                <input type="radio" name="gender" id="gender_2" value="여" required>
+                    <label for = "gender_1">여</label>
+                <br>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>추가정보</legend>
+                생년월일
+                <select name ="birth_year">
+                    <option>
+                        <%for(var i=1950; i <= 2022; i ++) {%>
+                        <option value="<%=i%>"><%=i%></option>
+                        <%}%>
+                    </option>
+                </select>년
+
+                <select name = "birth_month">
+                    <option>
+                        <%for(var j=1; j <= 12; j ++) {%>
+                            <option value="<%=j%>"><%=j+"월"%></option>
+                            <%}%>
+                    </option>
+                </select>월
+
+                <select name = "birth_day">
+                    <option>
+                        <%for(var k=1; k <= 31; k ++) {%>
+                            <option value="<%=k%>"><%=k+"월"%></option>
+                            <%}%>
+                    </option>
+                </select>일
+                <br>
+                <br>
+                <label for="email"> E-mail 
+                    <input type="email" id="email" name="email">
+                </label>
+                
+                <br>
+                <br>
+                <!-- 관심사
+                <input type="checkbox" name="hobby" value="여행">여행
+                <input type="checkbox" name="hobby" value="패션">패션
+                <input type="checkbox" name="hobby" value="음식">음식 -->
+                <br>
+                <br>
+                좋아하는색
+                <input type="color" name="color">
+                
+                
+        </fieldset>
+        <br>
+        
+        <button type="button" onclick="sendUserForm();">회원가입</button>
+    </form>
+</body>
+</html>

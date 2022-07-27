@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <tilte>Axios</tilte>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+        <script>
+            function sendGet() {
+                axios({
+                    method: "get",
+                    url: "http://localhost:8080/receive",
+                    params: {
+                        name: "codee"
+                    }
+                })
+                .then ((response) => { return response.data;})  //여기를 return이 아닌 console.log로 해서 했을 때 alert창이 뜨지않았음!! 주의할것!
+                .then ((d)=> {
+                    alert(d.message); 
+                });
+            }
+
+
+
+
+
+            function sendPost() {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/receive",
+                    data: {
+                        name: "codee"
+                    }
+                })
+                .then ((response) => { return response.data;})  ///rsponse하면 status등 다양한게 나옴. 필요없으니까 필요한 부분만 리턴할거임( then은 다음then이 리턴받음)
+                .then ((d)=> {
+                    alert(d.message);  //네이버에서 아이디나 메세지가 틀렸습니다.라는 창을 띄울 수 있는 것임.
+                })
+            }
+
+            function sendForm() {
+                var form =document.getElementById("form_info");
+
+                var result = form.checkValidity();
+                
+                if ( !result) {
+                    // alert("이상해!");
+                    form.reportValidity(); // 작성하지 않았을 때 알림창?같은게 나오는 것.
+
+                    return false;  //빠져나온다는 뜻.
+                }
+
+                console.log(result);           // 여기는 아래 input에서 required속성을 보며 두 인풋값이 입력되면 true가됨. 하나라도 안써있으면 false
+
+
+                // console.log(form.name.value);  //name속성값이 name인 것의 밸류를 가져옴
+                // console.log(form.age.value);   // name속성값이 age인 것의 밸류를 가져옴 (form의특성!!!!)
+            
+                // axios({
+                //     method: "post",
+                //     url: "http://localhost:8080/receive",
+                //     data: {
+                //         name: form.name.value          //폼에 입력한 값을 axios에 넣을 수 있고 그것을 메세지로 받을 수 있는것, 이때 age값을 안넣었는데 required임에도 불구하고 넘어가는것은 따로 처리를 해줘야함.(form.checkValidity()를 실행)
+                //     }
+                // })
+                // .then ((response) => { return response.data;}) 
+                // .then ((d)=> {
+                //     alert(d.message);  
+                // })
+            
+            }
+
+        </script>
+    </head>
+
+    <body>
+
+        
+        <button onclick="sendGet();">sendGet</button>
+        <button onclick="sendPost();">sendPost</button>  
+        <!-- 폼이 없기 때문에 그냥 타입 안정하고 함수만해도 실행이됨 -->
+
+        <form id="form_info">
+            <input type="text" name="name" required>
+            <input type="text" name="age" required>
+            <button type="button" onclick="sendForm()">sendForm</button> 
+            <!-- 여기서 타입 버튼 안해주면 온클릭이 안된다~왜냐면 폼 안이니까~ -->
+            
+        </form>
+    </body>
+</html>
