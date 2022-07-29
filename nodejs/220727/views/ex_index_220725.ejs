@@ -21,7 +21,7 @@
                         favoritecolor: form.color.value
                     }
                 })
-                .then ((response) => { return response.data;})  
+                .then ((response) => { return response.data;})    //axios랑 여기프로미스줄이랑은 관련이 없다! 그래서 response.params라고 하는 것이 아니다!!
                 .then ((d)=> {
                     alert(d.message); 
                 });

@@ -52,20 +52,20 @@
                 console.log(result);           // 여기는 아래 input에서 required속성을 보며 두 인풋값이 입력되면 true가됨. 하나라도 안써있으면 false
 
 
-                // console.log(form.name.value);  //name속성값이 name인 것의 밸류를 가져옴
-                // console.log(form.age.value);   // name속성값이 age인 것의 밸류를 가져옴 (form의특성!!!!)
+                console.log(form.name.value);  //name속성값이 name인 것의 밸류를 가져옴
+                console.log(form.age.value);   // name속성값이 age인 것의 밸류를 가져옴 (form의특성!!!!)
             
-                // axios({
-                //     method: "post",
-                //     url: "http://localhost:8080/receive",
-                //     data: {
-                //         name: form.name.value          //폼에 입력한 값을 axios에 넣을 수 있고 그것을 메세지로 받을 수 있는것, 이때 age값을 안넣었는데 required임에도 불구하고 넘어가는것은 따로 처리를 해줘야함.(form.checkValidity()를 실행)
-                //     }
-                // })
-                // .then ((response) => { return response.data;}) 
-                // .then ((d)=> {
-                //     alert(d.message);  
-                // })
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/receive",
+                    data: {
+                        name: form.name.value          //폼에 입력한 값을 axios에 넣을 수 있고 그것을 메세지로 받을 수 있는것, 이때 age값을 안넣었는데 required임에도 불구하고 넘어가는것은 따로 처리를 해줘야함.(form.checkValidity()를 실행)
+                    }
+                })
+                .then ((response) => { return response.data;}) 
+                .then ((d)=> {
+                    alert(d.message);  
+                })
             
             }
 

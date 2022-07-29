@@ -12,8 +12,8 @@ const upload = multer({
         },
         filename(req,file,done) {
             console.log( "multer filename" );
-            const ext = path.extname(file.originalname);
-            done(null, req.body.username + ext); //내가 보낸 id로 이름 정하는 것
+            const ext = path.extname(file.originalname);   //확장자
+            done(null, req.body.username + ext); //내가 보낸 id로 이름 정하는 것 //이러한 셋팅을 해놓은거다! req값이 들어오면 넣는다는 셋팅을 해놓은것!
         },
     }),
     limits: {fileSize : 5*1024*1024}, 
@@ -21,7 +21,7 @@ const upload = multer({
 
 
 app.set("view engine","ejs");
-app.use(express.static("uploads"));       //앞에 경로를 지정안해주면 localhost:8080/이미지파일이름 이렇게 적어줘야만 이미지가 나옴.
+app.use(express.static("uploads"));       //이부분을 해줘야 이미지가 나타날 수 있음. 
 app.use(express.urlencoded({extended:true})); 
 app.use(bodyParser.json());
 
