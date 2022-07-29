@@ -1,0 +1,5 @@
+    <img src="<%=filename %>">
+<!--여기서 filename은 req.file했을 때 나오는 키-값 들중 filename이라는 키! 
+    그냥 filename만 지정해주면 가입하기 눌렀을 때 이미지가 뜨지 않음. 즉, 정적인 페이지를 보여주려면 static 을 이용해야함!
+    그래서 앞에서 app.use(express.static("uploads"));  이설정을 해줘야한다.  
+    만약 app.use("/aa",express.static("uploads")); 라고 했으면 <img src="aa/<%=filename %>">라고 해줘야함-->

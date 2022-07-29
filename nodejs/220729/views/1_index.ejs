@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>파일 업로드</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="userfile">
+        <input type="text" name="name">
+        <button>업로드</button>
+    </form>
+    <br>
+    <form action="/upload/array" method="post" enctype="multipart/form-data">
+        <input type="file" name="userfile" multiple> 
+        <!-- multiple : 다중파일 선택 속성 -->
+        <button>업로드</button>
+    </form>
+    <br>
+    <form action="/upload/fields" method="post" enctype="multipart/form-data">
+        <input type="file" name="userfile">
+        <input type="file" name="userfile2">
+        <input type="file" name="userfile3">
+        <!-- fields: 폼안에 내용들이 다 다른 경우에는 fields를 사용한다. -->
+        <!-- 예를 들어, 등본 업로듣, 가족관계증명서 업로드 처럼 -->
+        <button>업로드</button>
+    </form>
+</body>
+</html>
