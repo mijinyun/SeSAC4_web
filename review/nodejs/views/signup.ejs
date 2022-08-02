@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>폼 전송 실습</title>
+</head>
+<body>
+    <h3>폼 전송 실습</h3>
+    <form action="/receive" method="GET">
+        이름 <input type="text" name="name" required><br>
+        성별
+        <input type="radio" name="gender" value="남">남자
+        <input type="radio" name="gender" value="여">여자<br>
+        생년월일
+            <select name="year">
+                <option>
+                    <%for (i=1950; i<2023; i++){ %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <%}%>
+                </option>
+            </select>년
+            <select name="month">
+                <option>
+                    <%for (i=1; i<13; i++){ %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <%}%>
+                </option>
+            </select>월
+            <select name="day">
+                <option>
+                    <%for (i=1; i<32; i++){ %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <%}%>
+                </option>
+            </select>일
+            <br>
+        관심사
+        <input type="checkbox" name="hobby" value="여행">여행
+        <input type="checkbox" name="hobby" value="패션">패션
+        <input type="checkbox" name="hobby" value="음식">음식
+        <br><br>
+        <button>회원가입</button>
+
+    </form>
+</body>
+</html>
