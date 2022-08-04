@@ -36,17 +36,64 @@ exports.post_login = async (req,res) => {
     var data = await User.get_user();
     // User.get_user();              //User라는 모델에서 get_user라는 함수를 통해 데이터를 가져오겟다(왜냐, 컨트롤러는 데이터를 읽을수가 없으니까.)
     
-    var info = data.split("//");         //index.txt파일에 있는 문자열을 //로 기준으로 나눠서 배열로 담음.
+    const info = data.split("\n");
+    var n = info.length;
+//     for (var i = 0; i<n; i++) {
+//         var eachData = info[i].split("//");
+//         console.log(eachData);
+
+//         if (eachData[0] != req.body.id) {
+//             res.send("아이디 다름");
+//         }
+//         else if (eachData[1] != req.body.pw) {
+//             res.send("비밀번호 다름");
+//         }
+//         else {
+//             res.send("로그인 성공!");
+//         }
+
     
-    if (info[0] != req.body.id) {
-        res.send("아이디 다름");
-    }
-    else if (info[1] != req.body.pw) {
-        res.send("비밀번호 다름");
-    }
-    else {
-        res.send("로그인 성공!");
-    }
+//     }
+// }
+    var hashMap = new Map();
+        for (var i = 0; i<n; i++) {
+            var eachData = info[i].split("//");
+            hashMap.set(eachData[0], eachData[1]);
+        }
+        console.log(hashMap);
+        console.log(req.body.index);
+        console.log(hashMap.has(req.body.id));
+        if (hashMap.has(req.body.id) === false) {
+            res.send("아이디 다름");
+        }
+        else if (hashMap.get(req.body.id) === req.body.pw) {
+            res.send("로그인 성공!"); 
+        } else {
+            res.send("비밀번호 다름");  
+        }
+    };
+
+//     const info = data.split("\n");
+//     var n = info.length;
+//     var ids = [];
+//     var pws = [];
+//     for (var i = 0; i<n; i++) {
+//         var eachData = info[i].split("//");
+//         ids.push(eachData[0]);
+//         pws.push(eachData[1]);
+//         console.log(eachData[0]);
+//     }
+//     console.log(ids);
+//     console.log(pws);
+//     console.log(req.body.id);
+//     console.log(req.body.pw);
     
-    console.log(data);
-}
+//     if (req.body.id in ids === false) {
+//         res.send("아이디 다름");
+//     }
+//     else if (req.body.pw in pws === false) {
+//         res.send("비밀번호 다름");  
+//     } else {
+//         res.send("로그인 성공!");
+//     }
+// };

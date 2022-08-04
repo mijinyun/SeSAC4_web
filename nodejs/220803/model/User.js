@@ -12,6 +12,8 @@ const fs = require("fs").promises;
 
 exports.post_user = function(data) {
     const { id, pw , name , age } = data;
+    let content = `${id}//${pw}//${name}//${age}`;
+    content += "\n";
     // fs.writeFile("../index.txt",result)
     //     .then(() => {
     //         `${id}//${pw}//${name}//${age}`
@@ -21,7 +23,10 @@ exports.post_user = function(data) {
     //         console.error(err);
     //     });
 
-    fs.writeFile("./index.txt", `${id}//${pw}//${name}//${age}`);  //이건 쌤이 해주신 부분.
+    // fs.writeFile("./index.txt", `${id}//${pw}//${name}//${age}<br>`);  //이건 쌤이 해주신 부분.
+    fs.appendFile("./index.txt", content, function (err) {
+        if (err) throw err;
+    });
 }
 
 
