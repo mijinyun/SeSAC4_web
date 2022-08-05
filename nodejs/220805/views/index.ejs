@@ -1,0 +1,110 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function writeComment() {
+            var form=document.getElementById("form_comment"); //안에있는 name이랑 comment가져오려고 변수선언한것!
+            axios({    //등록을 누르면 바로 테이블에 추가되는 거니까 동적자바스크립트 그래서! axios를 사용하는 것!
+                method:'post', //값을 추가하는 거니까 post방식
+                url: 'http://localhost:8080/visitor/write', //이경로로 포스트를 보냄 그 값은 아래 data값.
+                data: {
+                    name: form.name.value,
+                    comment: form.comment.value
+                }
+            })
+            .then((rep) => { return rep.data;})
+            .then((data) => {
+                //data = {id :2} 이런 형태로 들어와있을 거임
+                let html = //document.~쓸수있는데 귀찮으니까 !
+                "<tr><td>" + data.id + "</td><td>" + form.name.value + "</td><td>" + form.comment.value + "</td></tr>";
+                // "<tr><td>" + data.id + "</td><td>" + form.name.value + "</td><td>" + form.comment.value + 
+                //     "</td><td><button>수정</button></td><td><button>삭제</button></td></tr>";
+
+                $("table").append(html);
+
+            });
+        }
+
+        // function deleteComment() {
+        //     var form=document.getElementById("form_comment"); 
+        //     axios({    
+        //         method:'delete', 
+        //         url: 'http://localhost:8080/visitor/delete',
+        //         data: {
+        //             name: form.name.value,
+        //             comment: form.comment.value
+        //         }
+        //     })
+        //     .then((rep) => {
+        //         // 삭제버튼을 누르면 그 행의 데이터가 삭제됨. (조건)
+        //         // 누른데이터 = req?res 데이터
+        //     })
+        // }
+
+
+        // function updateComment() {
+        //     var form=document.getElementById("form_comment"); 
+        //     axios({    
+        //         method:'put', 
+        //         url: 'http://localhost:8080/visitor/update',
+        //         data: {
+        //             name: form.name.value,
+        //             comment: form.comment.value
+        //         }
+        //     })
+        //     .then((rep) => { return rep.data; })
+        //     .then((data) => {
+
+        //         // 수정 버튼을 누르면 그 행의 데이터가 인풋에 나타남. (조건)
+        //         // 그 인풋에 나타난 값을 변경해주고 
+        //         // 다시 등록을 누르면? 행추가 이런거 없이 변경이 됨. (mysql에서 특정 값을 특정 어떤 값으로 변경해줬던거 생각해보기)
+
+        //     })
+        // }
+
+    </script>
+</head>
+<body>
+    <form id="form_comment">
+        <fieldset>
+            <legend>방명록 등록</legend>
+                <input type="text" name="name" placeholder="사용자이름"><br>
+                <input type="text" name="comment" placeholder="방명록"><br>
+                <!-- 여기서 input에 id를 써주지않은것은 mysql에서 id를 auto_increment를 설정해주었기 때문에. 
+                이 테이블에 몇번째로 들어왔는지가 자동으로 확인되는것 -->
+
+        <button type="button" onclick="writeComment();">등록</button>
+        </fieldset>
+    </form>
+
+    <table border="1" cellspacing="0" cellpadding="10">
+        <tr style="font-weight: bold;">
+            <td>ID</td>
+            <td>작성자</td>
+            <td>방명록</td>
+            <td>수정</td>
+            <td>삭제</td>
+        </tr>
+
+        <% for (let i=0; i < data.length; i++) { %>
+            <tr>
+                <td><%=data[i].id%></td>
+                <td><%=data[i].name%></td>
+                <td><%=data[i].comment%></td>
+                <td><button type="button" onclick="modifyComment();">수정</button></td>
+                <td><button type="button" onclick="deleteComment();">삭제</button></td>
+                <%}%>
+            </tr>
+    </table>
+<!-- 
+    <% for (let i=0; i < data.length; i++) { %>
+        <p><%=data[i].name%></p>
+        <p><%=data[i].comment%></p>
+    <%}%> -->
+    <!-- 컨트롤러에서 보낸 data:result에서 온 값이라고 볼 수 있음. 여기서 data[i]는 튜플이 보여지는것.-->
+</body>
+
+</html>

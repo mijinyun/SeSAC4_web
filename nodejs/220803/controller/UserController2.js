@@ -100,10 +100,11 @@ exports.post_login = async (req,res) => {
 //     }
 // };
 
-exports.profile = (req,res) => {
-    res.render('image');
-}
 exports.post_profile =  (req,res) => {
-    var data = User.post_user_file();
-    const info = data.split("\n");
+    var hashMap = new Map();
+        for (var i = 0; i<n; i++) {
+            var eachData = info[i].split("//");
+            hashMap.set(eachData[0], eachData[1],eachData[4]);
+        }
+    console.log(hashMap);
 }

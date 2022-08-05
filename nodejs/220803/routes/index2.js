@@ -10,7 +10,6 @@ userRouter.post("/register",user.post_register);
 userRouter.get("/login",user.login);
 userRouter.post("/login",user.post_login);      //로그인 버튼을 누르면 user.post_login함수가 실행되게 함.
 
-userRouter.get("/profile",user.profile)
 userRouter.post("/profile",user.post_profile);
 
 

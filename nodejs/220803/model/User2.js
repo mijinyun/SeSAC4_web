@@ -29,16 +29,16 @@ exports.post_user = function(data) {
     });
 }
 
-exports.post_user_file = function(data) {
-    fs.readFile("../index.txt")    
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+// exports.post_user_file = function(data) {
+//     fs.readFile("../index.txt")    
+//         .then((data) => {
+//             console.log(data);
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
 
-}
+// }
 
 exports.get_user = async function(){
     var buffer = await fs.readFile("./index.txt");           //이부분과 controller의 post_login 부분에도 async await를 해줘야함.. 아니면 펜딩상태..?
