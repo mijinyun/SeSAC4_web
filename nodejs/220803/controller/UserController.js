@@ -55,6 +55,9 @@ exports.post_login = async (req,res) => {
     
 //     }
 // }
+
+
+//for문을 돌면서 response를 두번하면 오류난다!
     var hashMap = new Map();
         for (var i = 0; i<n; i++) {
             var eachData = info[i].split("//");
