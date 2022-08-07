@@ -18,6 +18,12 @@ exports.post_comment = (req,res) => {
 }
 
 
+//여기서 궁금한것!!! 위에서 id: result 는 id값만 가져온 것인데. 그이유는 id가 primary key라서 id값만 가져오는 것인가?
+//primary key만 가져오면 나머지 값이 입력이 되는건가?
+
+
+
+
 // exports.delete_comment = (req,res) => {
 
 //     Visitor.delete
