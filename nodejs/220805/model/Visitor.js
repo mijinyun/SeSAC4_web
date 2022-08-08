@@ -9,7 +9,7 @@ const cnn = mysql.createConnection({
 }); //db 연결해주는 함수.딕셔너리형태로 값을 보내줌.  //연결된 객체를 cnn에 담아주는 것. 
 
 //cnn객체에 쿼리라는 함수가 있음. 작성한 sql을 실행하는 함수 = 쿼리
-
+ 
 exports.get_visitors = (cb) => {
     cnn.query('SELECT * FROM visitor',(err,rows) => {
         if (err) throw err;
@@ -37,11 +37,29 @@ exports.insert = (name,comment,cb) => {
 //모델은 request객체를 확인할수없다.그래서 컨트롤러가 모델에게 값을 보내줘야함. 
 
 
-// exports.delete = (name,comment) => {
-//     cnn.query('DELETE FROM visitor WHERE name')
-// }
+exports.get_visitor = (id, cb) => { 
+    //id 컬럼의 값이 id인 데이터를 1개만 검색한다.('SELECT * FROM visitor WHERE id = ${id} limit 1')
+    cnn.query(`SELECT * FROM visitor WHERE id = ${id} limit 1`,(err,rows) => {
+        if (err) throw err;
 
-// exports.update = (name,comment) => {
+        cb(rows); //mysql에서 넘어온 그대로 컨트롤러에 보낸 것.
+    });
+}
 
-//     cnn.query('UPDATE FROM visitor WHERE name')
-// }
+
+exports.update = (data,cb) => {
+    let sql  = `UPDATE visitor SET name='${data.name}',comment='${data.comment}' WHERE id=${data.id}`;
+    cnn.query(sql,(err,rows) => {
+        if (err) throw err;
+
+        cb(rows);
+    });
+}
+
+exports.delete = (id,cb) => {
+    cnn.query(`DELETE FROM visitor WHERE id=${id}`,(err,rows) => {
+        if (err) throw err;
+
+        cb(rows);
+    });
+}

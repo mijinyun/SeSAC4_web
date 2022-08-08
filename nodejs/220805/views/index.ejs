@@ -19,51 +19,91 @@
             .then((data) => {
                 //data = {id :2} 이런 형태로 들어와있을 거임
                 let html = //document.~쓸수있는데 귀찮으니까 !
-                "<tr><td>" + data.id + "</td><td>" + form.name.value + "</td><td>" + form.comment.value + "</td></tr>";
-                // "<tr><td>" + data.id + "</td><td>" + form.name.value + "</td><td>" + form.comment.value + 
-                //     "</td><td><button>수정</button></td><td><button>삭제</button></td></tr>";
+                "<tr id='tr_" + data.id + "'><td>" + data.id + "</td><td>" + form.name.value + "</td><td>" + form.comment.value + "</td><td><button type='button' onclick='editComment(" + data.id + ");'>수정</button></td><td><button type='button' onclick='deleteComment(" + data.id + ");'>삭제</button></td></tr>";
+
+                //위 코드에서 가장 앞에 tr id ='tr ~' 이부분을 해줘야지 삭제버튼을 눌렀을 때 삭제가됨 (왜냐면 tr에 id가 부여가 되어야만.)
+
 
                 $("table").append(html);
 
             });
         }
 
-        // function deleteComment() {
-        //     var form=document.getElementById("form_comment"); 
-        //     axios({    
-        //         method:'delete', 
-        //         url: 'http://localhost:8080/visitor/delete',
-        //         data: {
-        //             name: form.name.value,
-        //             comment: form.comment.value
-        //         }
-        //     })
-        //     .then((rep) => {
-        //         // 삭제버튼을 누르면 그 행의 데이터가 삭제됨. (조건)
-        //         // 누른데이터 = req?res 데이터
-        //     })
-        // }
 
+        function editComment(id) {
+            axios({    
+                method:'get', 
+                url: 'http://localhost:8080/visitor/get?id=' + id  //이부분이 프론트부분
+            })
+            .then((rep) => { return rep.data })
+            .then((data) => {
+                console.log(data.result);
+            
+                var form = document.getElementById("form_comment");
+                form.name.value = data.result.name;
+                form.comment.value = data.result.comment;
 
-        // function updateComment() {
-        //     var form=document.getElementById("form_comment"); 
-        //     axios({    
-        //         method:'put', 
-        //         url: 'http://localhost:8080/visitor/update',
-        //         data: {
-        //             name: form.name.value,
-        //             comment: form.comment.value
-        //         }
-        //     })
-        //     .then((rep) => { return rep.data; })
-        //     .then((data) => {
+                var html = "<button type='button' onclick='editDo(" + id + ");'>수정</button>" + "<button type='button' onclick='editCancel();'>취소</button>";
+                document.getElementById("button-group").innerHTML = html;
+            
+            });
+        }
 
-        //         // 수정 버튼을 누르면 그 행의 데이터가 인풋에 나타남. (조건)
-        //         // 그 인풋에 나타난 값을 변경해주고 
-        //         // 다시 등록을 누르면? 행추가 이런거 없이 변경이 됨. (mysql에서 특정 값을 특정 어떤 값으로 변경해줬던거 생각해보기)
+        function editCancel() {
+            var form = document.getElementById("form_comment");
+            // form.name.value = " ";
+            // form.name.comment = " ";
+            form.reset(); //위에 두개를 적거나 혹은 이렇게 초기화 시켜도됨.
+            
+            var html = "<button type='button' onclick='writeComment();'>등록</button>";
+            document.getElementById("button-group").innerHTML = html;
+        }
 
-        //     })
-        // }
+        function editDo(id) {
+            //form에 있는 정보를 가져가서 파라미터로 받은 id값을 업데이트 해주는 것. (정보를 새롭게 바꾸는 것-수정)
+            var form = document.getElementById("form_comment");
+            axios({
+                //put,patch 차이~! (put은 전부다 갈아엎는 것, patch는 특정부분만!)
+                method:'patch',
+                url: 'http://localhost:8080/visitor/edit',
+                data: {
+                    id : id,
+                    name : form.name.value,
+                    comment: form.comment.value
+                }
+                //id는 프라이머리키로 대상을 찾는 것이고 아래 네임이랑 커멘트는 바꿔주는 내용
+            })
+            .then((rep) => { return rep.data;})
+            .then((data) => {
+                alert(data);
+
+                var tr = document.getElementById("tr_"+id);
+                var children = tr.children; //내가 선택하 tr태그의 자식요소들이 배열형태로 들어감.
+                // console.log(tr);
+                $(children[1]).text(form.name.value);
+                $(children[2]).text(form.comment.value);  //이부분은 내용수정을 하면 바로 웹페이지 테이블에서 수정된 내용이 반영되는 것을 볼 수있음.
+                console.log(children);
+
+            })
+        }
+
+        function deleteComment(id) {
+            axios({    
+                method:'delete', 
+                url: 'http://localhost:8080/visitor/delete',
+                data: { id : id }
+            })
+            .then((rep) => { return rep.data; })
+            .then((data) => { 
+                alert(data);
+
+                var tr = document.getElementById("tr_" + id);   //내가 삭제버튼을 누른 tr태그가 선택이 됨. 
+                $(tr).remove();
+                
+                // $("#tr_"+id).remove();  //위 두줄 코드를 이 한줄로 작성도 가능!
+
+            });
+        }
 
     </script>
 </head>
@@ -75,8 +115,9 @@
                 <input type="text" name="comment" placeholder="방명록"><br>
                 <!-- 여기서 input에 id를 써주지않은것은 mysql에서 id를 auto_increment를 설정해주었기 때문에. 
                 이 테이블에 몇번째로 들어왔는지가 자동으로 확인되는것 -->
-
+        <div id="button-group">
         <button type="button" onclick="writeComment();">등록</button>
+        </div>
         </fieldset>
     </form>
 
@@ -90,12 +131,15 @@
         </tr>
 
         <% for (let i=0; i < data.length; i++) { %>
-            <tr>
+            <tr id="tr_<%=data[i].id%>"> 
+                <!-- editDo를 실행할때 tr을 선택할때 어떤 tr을 선택할지 알수 있게됨. -->
                 <td><%=data[i].id%></td>
                 <td><%=data[i].name%></td>
                 <td><%=data[i].comment%></td>
-                <td><button type="button" onclick="modifyComment();">수정</button></td>
-                <td><button type="button" onclick="deleteComment();">삭제</button></td>
+                <td><button type="button" onclick="editComment('<%=data[i].id%>');">수정</button></td> 
+                <td><button type="button" onclick="deleteComment('<%=data[i].id%>');">삭제</button></td> 
+                
+                <!-- 위함수에 프라이머리키인 아이디값을 보내는거임. -->
                 <%}%>
             </tr>
     </table>

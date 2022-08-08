@@ -7,7 +7,7 @@ exports.get_visitors = (req,res) => {
         res.render("index",{ data: result }) //data라는 키값으로 result를 보내줌. ejs에서 데이터라는 변수명으로 사용할 수 있음. 여기서 result는 모델에서 cb(rows) //ejs엣서 <%=name%>이렇게 된부분에서 name은 키값이다~~이말!
     });//mysql은 프로미스가 안되기때문에 콜백함수를 실행해줘야 렌더가 가능.    
 }
-
+ 
 exports.post_comment = (req,res) => {
     console.log(req.body);
 
@@ -23,13 +23,30 @@ exports.post_comment = (req,res) => {
 
 
 
+exports.get_visitor = (req,res) => {
+    Visitor.get_visitor(req.query.id, function(result) {        //req.query.id 를 보내줘야 모델에서 받아서 함수처리를 해줄수가있음.
+        console.log("result: ", result);
+        // req.send({data:result}); //이중배열형태 [{}] 이런형태인데 아래는 {} 이형태로 보내겠다는 것 
+        res.send({result : result[0]});  //일차원배열로 보내겠다는것!검색된 한개의 데이터만 클라이언트에게 보내겠다는 것.
+        //여기서 result : ~로 보냈으면 ejs파일에서 데이터를 받을때 result로 해줘야함! 아니면 에러가 발생!!
+        
+    })
+}
 
-// exports.delete_comment = (req,res) => {
+//이함수는 모델을 실행시켜서 한개를 가져오는 거임.
 
-//     Visitor.delete
-// }
 
-// exports.update_comment = (req,res) => {
-//     console.log(req.body);
-     
-// }
+exports.patch_comment = (req,res) => {
+    //patch도 post로 동일하게 axios로 값을 받기?때문에 동일하게 body로 받음.
+    Visitor.update(req.body, function(result) {
+        console.log(result);
+        res.send("수정 성공");
+    });
+}
+
+exports.delete_comment = (req,res) => {
+    Visitor.delete(req.body.id , function(result) {
+        console.log(result);
+        res.send("삭제 성공");
+    });
+}

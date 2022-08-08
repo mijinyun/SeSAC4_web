@@ -14,4 +14,4 @@ app.use("/visitor",router);
 
 app.listen(port,() => {
     console.log("Server port: ",port);
-});
+}); 
