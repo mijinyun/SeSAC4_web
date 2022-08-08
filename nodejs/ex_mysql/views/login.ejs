@@ -1,0 +1,81 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>로그인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+        function Login() {
+            var form =document.getElementById("form_info");
+
+            axios({
+                    method: "post",
+                    url: "http://localhost:8080/user/loginpass",
+                    data: {
+                        userid: form.user_id.value,
+                        userpassword: form.user_password.value
+                    }
+                })
+                .then ((rep) => { return rep.data;})  
+                .then ((d) => { 
+                    console.log(d);
+                    console.log(result);
+
+                    });
+                }
+    </script>
+
+
+
+
+    <style>
+        * {
+            font-family: 'Gaegu', cursive;
+        }
+        .navbar-brand {
+           padding-left: 10px;
+           font-weight: bold;
+           font-size:x-large
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" > 로그인</a>
+        </button>
+      </nav>
+      
+      <br>
+
+      <form id="form_info">
+        <fieldset style="border:1 solid; color:#FE2E64" >
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="basic-addon1" style="font-weight: bold;" >ID</span>
+                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="user_id" required>
+            </div>
+        
+            <br>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="basic-addon1" style="font-weight: bold;" >Password</span>
+                <input type="password" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="user_password" required>
+            </div>
+
+        </fieldset>
+        <div class="loginpass">
+            <button type="button" onclick="Login();" class="btn btn-danger">로그인</button>
+        </div>
+        
+    </form>
+
+</body>
+</html>
