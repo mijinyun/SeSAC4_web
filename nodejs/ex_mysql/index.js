@@ -13,8 +13,6 @@ const router = require("./routes");
 app.use("/user",router);
 
 
-
-
 app.listen(port,() => {
     console.log("Server port: ",port);
 }); 

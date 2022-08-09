@@ -19,7 +19,7 @@
 
             axios({
                     method: "post",
-                    url: "http://localhost:8080/user/loginpass",
+                    url: "http://localhost:8080/user/login",
                     data: {
                         userid: form.user_id.value,
                         userpassword: form.user_password.value
@@ -27,11 +27,62 @@
                 })
                 .then ((rep) => { return rep.data;})  
                 .then ((d) => { 
-                    console.log(d);
-                    console.log(result);
+                    
+                    if (d == true ) {
+                        alert("로그인 성공!");
+
+                        var html = "<button type='button' onclick='editUser();' class='btn btn-danger'>회원정보 수정</button>&nbsp;<button type='button' onclick='deleteUser();' class='btn btn-danger'>회원탈퇴</button>";
+                        $(".loginpass").html(html);
+
+                        var navbar_name = "<a class='navbar-brand' href='#'' > My page </a>";
+                        $(".title").html(navbar_name);
+                        
+                    }
+                    else {
+                        alert("로그인 실패!");
+                    }
 
                     });
+
                 }
+
+            function editUser(id) {
+
+                var form = document.getElementById("form_info");
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/user/login/edit',
+                    data: {
+                        userid : form.user_id.value,
+                        userpassword : form.user_password.value
+                    }
+                })
+                .then((rep) => {return rep.data; })
+                .then((data) => {
+                    alert("수정 성공");
+                });
+            }
+
+
+            function deleteUser(id) {
+                var form = document.getElementById("form_info");
+                
+                axios({
+                    method:'post',
+                    url: 'http://localhost:8080/user/login/delete',
+                    data: { userid: form.user_id.value }
+                })
+                .then((rep) => { return rep.data; })
+                .then((data) => {
+                    alert("탈퇴ㅠㅠ");
+                    document.location.href= "/user/login";
+
+                })
+            }
+
+
+
+
     </script>
 
 
@@ -51,8 +102,9 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="title">
         <a class="navbar-brand" href="#" > 로그인</a>
-        </button>
+        </div>
       </nav>
       
       <br>

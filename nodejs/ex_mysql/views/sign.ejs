@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <style>
+    <style> 
         * {
             font-family: 'Gaegu', cursive;
         }
@@ -40,10 +40,14 @@
             .then((data) => {
                 
                 alert("회원가입 성공");
-
-                // document.location.href="/login";
                 
             });
+        }
+
+
+
+        function goLogin() {
+            document.location.href="http://localhost:8080/user/login";
         }
     </script>
 
@@ -78,6 +82,7 @@
             <div style="font-size:0.8em; font-style: italic; text-align: right;">*숫자만 최소 4글자</div>
         </fieldset>
         <button type="button" class="btn btn-danger" onclick="SignUp();">가입하기!</button>
+        <button type="button" class="btn btn-danger" onclick="goLogin();">로그인하러가기!</button>
     </form>
 
 
