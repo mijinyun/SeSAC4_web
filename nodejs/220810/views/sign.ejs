@@ -1,0 +1,92 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>회원가입</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style> 
+        * {
+            font-family: 'Gaegu', cursive;
+        }
+        .navbar-brand {
+           padding-left: 10px;
+           font-weight: bold;
+           font-size:x-large
+        }
+    </style>
+
+    <script>
+        function SignUp() {
+            var form = document.getElementById("sign_info");
+            axios ({
+                method: 'post',
+                url: 'http://localhost:8000/user/sign',
+                data: {
+                    userid: form.user_id.value,
+                    username: form.user_name.value,
+                    userpassword: form.user_password.value
+                } 
+            })
+            .then((rep) => { return rep.data})
+            .then((data) => {
+                
+                alert("회원가입 성공");
+                
+            });
+        }
+
+
+
+        function goLogin() {
+            document.location.href="http://localhost:8000/user/login";
+        }
+    </script>
+
+
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" >회원가입</a>
+      </nav>
+      
+      <br>
+      <form id="sign_info">
+        <fieldset style="border:1 solid; color:#FE2E64" >
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="basic-addon1" style="font-weight: bold;" >ID</span>
+                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="user_id" required>
+            </div>
+            <div style="font-size: 0.8em; font-style: italic; text-align: right;">*영문/숫자 최소 2글자</div>
+            <br>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="basic-addon1" style="font-weight: bold;" >Name</span>
+                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="user_name" required>
+            </div>
+            <br>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="basic-addon1" style="font-weight: bold;" >Password</span>
+                <input type="password" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="user_password" required>
+            </div>
+            <div style="font-size:0.8em; font-style: italic; text-align: right;">*숫자만 최소 2글자</div>
+        </fieldset>
+        <button type="button" class="btn btn-danger" onclick="SignUp();">가입하기!</button>
+        <button type="button" class="btn btn-danger" onclick="goLogin();">로그인하러가기!</button>
+    </form>
+
+
+    
+
+</body>
+</html>

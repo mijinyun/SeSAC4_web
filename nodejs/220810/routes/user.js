@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const user = require("../controller/userController");
+const user = require("../controller/UserController");
 
 router.get("/",user.sign);
 router.post("/sign",user.post_sign);
@@ -10,4 +10,4 @@ router.post("/login",user.post_login);
 router.post("/login/edit",user.post_edit);
 router.post("/login/delete",user.delete_user);
 
-module.exports = router;
+module.exports = router; 
