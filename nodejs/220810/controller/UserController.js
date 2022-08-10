@@ -41,7 +41,10 @@ exports.post_login = (req,res) => {
     .then((result) => {
         console.log(result);
         if ((result.id == req.body.userid ) && (result.password == req.body.userpassword)) { res.send(true)}
-        else { res.send(false)};
+        // else { res.send(false)};
+    })
+    .catch((err) => {
+        res.send(false);
     })
 }
 
