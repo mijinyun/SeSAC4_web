@@ -1,0 +1,30 @@
+<html>
+    <head>
+
+
+        <script>
+        
+            function getCheckboxValue(event) {
+                
+                if (event.target.checked) {
+                    document.cookie = "user=nono; expires=Sat,13 Aug 2022 13:00:00 GMT; path=/popup";
+                }
+            }
+
+            function closePopup() {
+                window.close();
+            }
+        </script>
+
+    </head>
+    <body>
+        <h1>hello!</h1>
+
+        <form>
+            <input class="today" type="checkbox" name="notToday" onclick='getCheckboxValue(event)'>오늘 그만 보기
+            <button type="button" onclick="closePopup();">닫기</button>
+        </form>
+        
+
+    </body>
+</html>
