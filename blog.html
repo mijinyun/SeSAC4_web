@@ -41,28 +41,22 @@
     <body>
         <thead>
         <nav>
-    
         </nav>
         </thead>
         <tbody>
-            <div class="container text-center">
-                <div class="login_main">
-                    <img src="./login_image.png" class="login_background">
-                    <div class="form_background"></div>
-                    <!-- <div class="form_section"> -->
+            <div class="container">
+                <img src="./login_image.png" class="login_background">
                     <form id="login_form">
-
-                        <img src="./logo.png" width="300px;" class="login_logo"><br>
-
+                        <div class="form_background"></div>
+                        <div class="login_info">
+                            <img src="./logo.png" width="300px;" class="login_logo"><br>
                         <!-- <div></div> 여기는 나중에 경고창 띄울 곳-->
                             <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white"><br><br>
                             <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white">
                             <br>
 
                             <div class="remember"><label for="userid_Remember" style="font-size: 0.7rem;"><input type="checkbox" id="userid_Remember" name="id_remember">&nbsp;아이디를 기억해줘!</label></div>
-                            <!-- <div></div>아이디를 기억해줘! -->
-
-
+                            
                             <br>
 
 
@@ -74,21 +68,18 @@
                             <div>
 
                                 <span>아직도 스윗이 아니신가요?</span>&nbsp;
-                                <!-- <a href="http://localhost:8000/user/signup" target="_self" onclick="register();" style="color:#4686C2; font-weight:bolder">회원가입</a>&nbsp -->
+
                                 <a href="javascript:void(0);" onclick="register();return false;">회원가입</a>&nbsp;
                                 <span>하러가기</span>
                             </div>
                             <br>
                             <div>
 
-                            <!-- <a href="http://localhost:8000/user/findUser" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a> -->
                             <a href="javascript:void(0);" onclick="findPw();return false;">비밀번호 찾기</a>
                             </div>
-                        
+                        </div>
                     </form>
-                <!-- </div> -->
-                </div>
-                </div>
+                
             </div>
 
         </tbody>
