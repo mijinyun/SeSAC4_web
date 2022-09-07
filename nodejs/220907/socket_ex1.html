@@ -1,0 +1,40 @@
+<html></html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1> Hello World! </h1>
+    <button type="button" onclick="btnHello();">hello</button>
+    <button type="button" onclick="btnStudy();">study</button>
+    <button type="button" onclick="btnBye();">bye</button>
+    <br>
+    <br>
+    <div style="font-weight: bold" class="addText"></div>
+
+    <script>
+
+        var socket = io.connect();
+        
+        socket.on('connect',function() {
+            console.log('connect!');
+        })
+
+
+        function btnHello() {
+            $('.addText').html('<div> hello: 안녕! </div>');
+            socket.emit('hello','hello!');
+        }
+
+        function btnStudy() {
+            $('.addText').html('<div> stud: 공부하자! </div>');
+            socket.emit('study','study!');
+        }
+
+        function btnBye() {
+            $('.addText').html('<div> bye: 잘가! </div>');
+            socket.emit('bye','bye!');
+        }
+    </script>
+</body>
+</html>
