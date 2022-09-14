@@ -4,53 +4,156 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
     <style>
+/*         
+        .box {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            margin: auto;
+        }
+        
+        .container {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        } */
 
         .chat-list { 
-            background-color: lightgrey; width:50%; 
+            background-color: rgb(213, 229, 253); 
+            width:50%; 
             height: 50%;
             padding:10px; 
             border-radius: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            overflow-y:scroll;
+            
             }
 
+        /* .chat-list div { */
+        .member_notice {
+            display: inline-block;
+            padding: 5px;
+            font-size:0.5rem;
+            background-color: rgba(192, 192, 192, 0.5);
+            border-radius: 10px;
+        }
         .chat-list div div{
             display: inline-block;
             padding: 3px;
+            margin-top: 3px;
         }
 
+        /* .inputForm {
+            width:100%;
+        }
+ */
         .mine {
             text-align:right;
             /* float: right; */
 
             /* float를 쓰면 배치 자체가 오른쪽으로 가는 것! float개념에 대해서 좀 더 보충하기!!!!!!! */
         }
-        .mine div {
+        .mine div:not(:first-child) {
             background-color: yellow;
+            border-radius: 5px;
+            margin-right: 10px;
         }
 
-        .yours div {
+        .mine div:not(:first-child)::after {
+            content:"";
+            border-top: 10px solid yellow;
+            border-right: 10px solid transparent;
+            position: absolute;
+        }
+
+
+        .yours {
+            text-align: left;
+        }
+        .yours div:not(.chatTime){
             background-color: white;
+            border-radius: 5px;
+            margin-left:10px;
+        }
+
+
+        .yours div:not(.chatTime)::before {
+            content:"";
+            border-top: 10px solid white;
+            border-left: 10px solid transparent;
+            position: absolute;
+            margin-left: -10;
+        }
+
+        .yours span {
+            font-size: 0.5rem;
+        }
+
+        .chatTime {
+            font-size: 0.3rem;
+            padding-bottom: 0;
+        }
+
+        .userInfo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .userInfo img {
+            src: "nodejs\220907\user.png";
+            width:10px;
+            height: 10px;
         }
 
     </style>
 </head>
 <body>
-    <!-- 메세지를 보내거나 받으면 보이는 곳 -->
-    <div id="chat-list" class="chat-list"></div><br>
-    <input type="text" id="message">
-    <button type="button" onclick="send();">전송</button>
+    <div class="box">
+        <div class="container">
+        <!-- 메세지를 보내거나 받으면 보이는 곳 -->
+            <div id="chat-list" class="chat-list"></div><br>
+            <div class ="inputForm">
+                <select class="nick-list">
+                    <option value="전체">전체</option>
+                </select>
+                <input type="text" id="message">
+                <button type="button" onclick="send();">전송</button>
+            </div>
+        </div>
+    </div>
     
 
     <script>
-        var id = ""; //서버로 받은 id를 저장
-        var socket = io.connect();
-        socket.on('info',function(data) { id = data; });
+
+        $('#chat-list').scrollTop($('#chat-list')[0].scrollHeight);
+
+
+        var nickname = prompt('닉네임을 입력해주세요.'); //설정한 닉네임을 서버한테 알려줘야하는 것!
         
+        // var id = ""; //서버로 받은 id를 저장
+        var socket = io.connect();
+        socket.emit('info2',{nickname: nickname});
+        // socket.on('info',function(data) { id = data; });
         //모든사람한테 지금 접속한 새로운 사람을 알려주는것.
+
+        socket.emit('sendList',{nickname: nickname});
+
         function send() {
-            console.log(id);
+            // console.log(id);
             let msg = document.getElementById('message').value;
-            socket.emit('send',{id: id, msg: msg});
+            // socket.emit('send',{id: id, msg: msg});
             //키값과 변수명이 동일하면 socket.emit('send',{id,msg}); 이렇게 쓸수 있음.
+
+            if (msg == "") {
+                return
+            }
+            let nick = document.querySelector('.nick-list').value; //셀렉트태그에서 선택한 닉네임
+            console.log(nick);
+
+            socket.emit('send',{msg: msg, to: nick});
             document.getElementById('message').value = "";
 
         }
@@ -58,18 +161,50 @@
             //data = {id: ~~, msg:~~}
             let chat_list =document.getElementById('chat-list');
             let div = document.createElement('div');
+            let div_time = document.createElement('div');
             let div_chat = document.createElement('div');
 
+            let div_user = document.createElement('div');
+            let nick_image = document.createElement('img');
+            let span = document.createElement('span');
+
+            let date = new Date();
+            let chat_time = date.getHours() + ':' + date.getMinutes();
+
+            div_time.classList.add('chatTime');
+            div_time.textContent = chat_time;
             div_chat.textContent = data.msg;
 
+
+            div_user.classList.add('userInfo');
+            div_user.appendChild(nick_image);
+            div_user.appendChild(span);
             //아이디. 즉, 닉네임 없을경우
             // if (msg == document.getElementById('message').value) {div.classList.add('mine');}
             // else {div.classList.add('yours');}
             
             //아이디가 있을경우 이렇게 사용
-            if (data.id == id) {div.classList.add('mine');}
-            else {div.classList.add('yours');}
-            div.appendChild(div_chat);
+            // if (data.id == id) {div.classList.add('mine');}
+            if (data.is_dm == true ) { 
+                div_chat.textContent = '(DM)' +div_chat.textContent;
+            
+            }
+            if (data.nickname == nickname) {div.classList.add('mine');} //닉네임을 설정하면 이제 클라이언트가 아는 것은 닉네임뿐임!js파일에서 설정 //여기서 닉네임이 같을 수 있지만 서버에서는 socket.id를 통해서 닉네임을 설정해주었기 때문에 같은 닉네임이여도 서버에서는 id값이 다 다르기 때문에 구분이 됨. 만약 클라이언트에서 구분이 되고싶으면 닉네임 중복을 넣어줘야함.
+            else {
+                div.appendChild(nick_image);
+                span.textContent = data.nickname;
+                div.appendChild(span);
+                div.classList.add('yours');}
+
+            if ($(div).hasClass('mine')) {
+                div.appendChild(div_time);
+                div.appendChild(div_chat);
+            } else {
+                div.appendChild(div_chat);
+                div.appendChild(div_time);
+            }
+            // div.appendChild(div_time);
+            // div.appendChild(div_chat);
             chat_list.appendChild(div);
         });
 
@@ -77,11 +212,48 @@
         socket.on('notice',function(data){
             let chat_list = document.getElementById('chat-list');
             let div = document.createElement('div');
-            div.textContent = data;
+            let div2 = document.createElement('div');
+            div2.classList.add('member_notice');
+            div2.textContent = data;
 
             chat_list.appendChild(div);
+            div.appendChild(div2);
+
         });
-        
+
+        socket.on('list',function(list) {
+            //list = { id~~: nickname, id~~~:nickname};
+            console.log(nickname);
+            
+            let users = document.querySelector('.nick-list');
+            while (users.firstChild) {
+                users.removeChild(users.lastChild);
+            }//옵션이 남지않을 때까지 돌림. 가장 끝에 있는 옵션부터 지우는 것 //왜 지워야함? // 새로운 요소를 추가하는게 아니라 덮어쓰기..?
+
+            let UserList = document.createElement('option');
+            UserList.text = "전체";
+            UserList.value = "전체";
+            users.appendChild(UserList);
+
+            for (let [key,value] of Object.entries(list)) { //리스트를 분해시키면서 for문을 도는 것  
+                
+                let UserList = document.createElement('option');
+                UserList.text = value;
+                UserList.value = value;
+                users.appendChild(UserList);
+            }
+
+            // var a = {
+            //     key1 : '1',
+            //     key2 : '2'
+            // }
+            // for (let [key,value] of Object.entries(a) {
+            //     key = 'key1', value = '1';
+            //     key = 'kye2', value - '2';
+            // }) 이러한 방식이다~
+            
+        })
+
     </script>
 </body>
 </html>
