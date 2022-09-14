@@ -15,6 +15,7 @@ var io = require('socket.io')(http);
 
     var list = {};
     io.on('connection', function(socket) {
+        console.log(list); //여기 list랑 클라이언트 list랑 어떻게 다르게 찍히는지 확인해보기.
         console.log('Connected',socket.id);
         // socket.emit('info',socket.id);
         // 서버가 클라이언트에게 식별자를 보내주는것 

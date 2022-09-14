@@ -102,11 +102,11 @@
             flex-direction: column;
         }
 
-        .userInfo img {
+        /* .userInfo img {
             src: "nodejs\220907\user.png";
             width:10px;
             height: 10px;
-        }
+        } */
 
     </style>
 </head>
@@ -128,9 +128,6 @@
 
     <script>
 
-        $('#chat-list').scrollTop($('#chat-list')[0].scrollHeight);
-
-
         var nickname = prompt('닉네임을 입력해주세요.'); //설정한 닉네임을 서버한테 알려줘야하는 것!
         
         // var id = ""; //서버로 받은 id를 저장
@@ -138,8 +135,6 @@
         socket.emit('info2',{nickname: nickname});
         // socket.on('info',function(data) { id = data; });
         //모든사람한테 지금 접속한 새로운 사람을 알려주는것.
-
-        socket.emit('sendList',{nickname: nickname});
 
         function send() {
             // console.log(id);
@@ -165,7 +160,7 @@
             let div_chat = document.createElement('div');
 
             let div_user = document.createElement('div');
-            let nick_image = document.createElement('img');
+            // let nick_image = document.createElement('img');
             let span = document.createElement('span');
 
             let date = new Date();
@@ -177,7 +172,7 @@
 
 
             div_user.classList.add('userInfo');
-            div_user.appendChild(nick_image);
+            // div_user.appendChild(nick_image);
             div_user.appendChild(span);
             //아이디. 즉, 닉네임 없을경우
             // if (msg == document.getElementById('message').value) {div.classList.add('mine');}
@@ -191,7 +186,7 @@
             }
             if (data.nickname == nickname) {div.classList.add('mine');} //닉네임을 설정하면 이제 클라이언트가 아는 것은 닉네임뿐임!js파일에서 설정 //여기서 닉네임이 같을 수 있지만 서버에서는 socket.id를 통해서 닉네임을 설정해주었기 때문에 같은 닉네임이여도 서버에서는 id값이 다 다르기 때문에 구분이 됨. 만약 클라이언트에서 구분이 되고싶으면 닉네임 중복을 넣어줘야함.
             else {
-                div.appendChild(nick_image);
+                // div.appendChild(nick_image);
                 span.textContent = data.nickname;
                 div.appendChild(span);
                 div.classList.add('yours');}
@@ -223,12 +218,14 @@
 
         socket.on('list',function(list) {
             //list = { id~~: nickname, id~~~:nickname};
+
+            console.log(list); // 여기 list랑 js에서 list 콘솔찍으면 다른건지 확인해볼 것!!!!
             console.log(nickname);
             
             let users = document.querySelector('.nick-list');
             while (users.firstChild) {
                 users.removeChild(users.lastChild);
-            }//옵션이 남지않을 때까지 돌림. 가장 끝에 있는 옵션부터 지우는 것 //왜 지워야함? // 새로운 요소를 추가하는게 아니라 덮어쓰기..?
+            }//옵션이 남지않을 때까지 돌림. 가장 끝에 있는 옵션부터 지우는 것 //왜 지워야함? // 새로운 요소를 추가하는게 아니라 덮어쓰기..? 이부분 이해가안됨~~왜하는건지?
 
             let UserList = document.createElement('option');
             UserList.text = "전체";
