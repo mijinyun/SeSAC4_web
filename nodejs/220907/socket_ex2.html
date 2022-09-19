@@ -32,22 +32,50 @@
         justify-content: center; */
     }
 
+    .list_container {
+        /* margin-top:10%; */
+        background-color: rgb(113, 166, 247); 
+        width:100%;
+        height: 30px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        display: flex;
+    }
+
+    .list_container ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        /* padding-top: 10px; */
+        /* margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 0; */
+        margin : 0 5%;
+    }
+
+    .exitRoom:hover, .backRoom:hover {
+        cursor: pointer;
+    }
+
+
     .chat-list { 
         background-color: rgb(213, 229, 253); 
         /* width:50%; */
         width:100%; 
-        height: 50%;
+        height: 70%;
         padding:10px; 
         /* border-radius: 20px; */
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        /* border-top-left-radius: 20px;
+        border-top-right-radius: 20px; */
         text-align: center;
         display: flex;
         flex-direction: column;
         overflow-y:scroll;
         padding-right: 0;
         padding-left: 0;
-        
         }
 
 
@@ -90,6 +118,7 @@
         margin-right: 0;
         height: 34px;
         flex-grow: 1;
+        border-color: rgb(113, 166, 247);
     }
 
     
@@ -104,8 +133,10 @@
         text-align: center;
     }
     .sendBtn {
-        background-color: transparent;
-        border: 1px solid;
+        /* background-color: transparent; */
+        background-color: rgb(113, 166, 247);
+        border: 1px solid rgb(113, 166, 247);
+        color: white;
         border-radius: 3px;
         height: 34px;
         flex-grow: 1;
@@ -180,6 +211,47 @@
         height: 10px;
     } */
 
+    .msgBox {
+        position: relative;
+    }
+
+    .arrow_box {
+        display: none;
+        position: absolute;
+        width: 130px;
+        padding: 8px;
+        left: 0;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;  
+        border-radius: 8px;
+        background: yellow;
+        color: black;
+        font-size: 11px;
+        box-shadow: 3px 3px 3px 3px lightgrey;
+    }
+
+    .arrow_box:after {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -10px;
+        /* border: solid transparent; */
+        /* border-color: yellow; */
+        border-top: 15px solid none;
+        border-bottom: 15px solid yellow;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-width: 10px;
+        pointer-events: none;
+        content: " ";
+    }
+
+
+
+
+
 
     </style>
 
@@ -187,15 +259,28 @@
 <body>
     <div class="box">
         <div class="container">
+            <div class="list_container">
+                <ul>
+                    <li>
+                        <i style="color:white" class="backRoom fa-solid fa-arrow-left"></i>
+                        <div class="menu"></div>
+                    </li>
+                    <li>단톡방이름</li>
+                    <li><i style="color:white" class="exitRoom fa-solid fa-bars"></i></li>
+                </ul>
+            </div>
         <!-- 메세지를 보내거나 받으면 보이는 곳 -->
             <div id="chat-list" class="chat-list"></div>
-            <div class ="inputForm">
-                <select class="nick-list">
-                    <option value="전체">전체</option>
-                </select>
-                <input type="text" id="message" style="height: 25px;"/>
-                <!-- <span class="emoji"><i class="fa-regular fa-face-smile"></i></span> -->
-                <button class='sendBtn' type="button" onclick="send();"><span><i class="fa-regular fa-paper-plane"></i></span></button>
+            <div class="msgBox">
+                <div class ="inputForm">
+                    <select class="nick-list">
+                        <option value="전체">전체</option>
+                    </select>
+                    <input type="text" id="message" style="height: 25px;"/>
+                    <!-- <span class="emoji"><i class="fa-regular fa-face-smile"></i></span> -->
+                    <button class='sendBtn' type="button" onclick="send();"><span><i class="fa-regular fa-paper-plane"></i></span></button>
+                </div>
+                <p class="arrow_box">친구들에게 인사해보세요!</p>
             </div>
         </div>
     </div>
@@ -218,6 +303,8 @@
                     }
                 }
             });
+
+            $('.arrow_box').css('display','block');
             
         })
 
@@ -244,7 +331,8 @@
             let nick = document.querySelector('.nick-list').value; //셀렉트태그에서 선택한 닉네임
 
             socket.emit('send',{msg: msg, to: nick});
-            $(".emojionearea-editor").html(""); 
+            $(".emojionearea-editor").html("");
+            $('.arrow_box').css('display','none'); 
         }
         socket.on('newMessage',function(data){
             //data = {id: ~~, msg:~~}
