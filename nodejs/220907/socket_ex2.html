@@ -30,6 +30,12 @@
         /* display: flex;
         flex-direction: column;
         justify-content: center; */
+        
+        min-width: 480px;
+    }
+
+    .chat_whole_container {
+        position: relative;
     }
 
     .list_container {
@@ -56,9 +62,54 @@
         margin : 0 5%;
     }
 
-    .exitRoom:hover, .backRoom:hover {
+
+    /* 슬라이드바 메뉴 */
+    .infoRoom:hover, .backRoom:hover {
         cursor: pointer;
     }
+
+    .info_bg {
+        width: 100%;
+        height: 100%;
+        /* background: rgba(0,0,0,0.7); */
+        background: transparent;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        position: absolute;
+        top:0;
+        display: none;
+    }
+
+    .sidebar_info {
+        display: none;
+        width: 50%;
+        height: 100%;
+        background: white;
+        border-top-right-radius: 20px;
+        position: absolute;
+        top:0;
+        right: -50%;
+    }
+
+    .closeBtn {
+        width: 20px;
+        height: 20px;
+        margin: 10px;
+    }
+
+    .closeBtn > a {
+        display: block;
+        height: 100%;
+        height: 100%;
+    }
+
+
+
+
+
+
+
+
 
 
     .chat-list { 
@@ -76,6 +127,7 @@
         overflow-y:scroll;
         padding-right: 0;
         padding-left: 0;
+
         }
 
 
@@ -161,7 +213,7 @@
         /* padding-right:50px; */
         /* position을 relative를 해야 말풍선꼬리의 위치가 잘 고정되어 나옴. */
         position: relative;
-        font-size: 0.8rem;
+        font-size: 1rem;
 
     }
 
@@ -259,28 +311,37 @@
 <body>
     <div class="box">
         <div class="container">
-            <div class="list_container">
-                <ul>
-                    <li>
-                        <i style="color:white" class="backRoom fa-solid fa-arrow-left"></i>
-                        <div class="menu"></div>
-                    </li>
-                    <li>단톡방이름</li>
-                    <li><i style="color:white" class="exitRoom fa-solid fa-bars"></i></li>
-                </ul>
-            </div>
-        <!-- 메세지를 보내거나 받으면 보이는 곳 -->
-            <div id="chat-list" class="chat-list"></div>
-            <div class="msgBox">
-                <div class ="inputForm">
-                    <select class="nick-list">
-                        <option value="전체">전체</option>
-                    </select>
-                    <input type="text" id="message" style="height: 25px;"/>
-                    <!-- <span class="emoji"><i class="fa-regular fa-face-smile"></i></span> -->
-                    <button class='sendBtn' type="button" onclick="send();"><span><i class="fa-regular fa-paper-plane"></i></span></button>
+            <div class = 'chat_whole_container'>
+                <div class="list_container">
+                    <ul>
+                        <li>
+                            <i style="color:white" class="backRoom fa-solid fa-arrow-left"></i>
+                            <div class="menu"></div>
+                        </li>
+                        <li>단톡방이름</li>
+                        <li><i style="color:white" class="infoRoom fa-solid fa-bars"></i></li>
+                    </ul>
                 </div>
-                <p class="arrow_box">친구들에게 인사해보세요!</p>
+                <div class="info_bg"></div>
+                <div class="sidebar_info">
+                    <div class="closeBtn"><a href="#">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjMuOTU0IDIxLjAzbC05LjE4NC05LjA5NSA5LjA5Mi05LjE3NC0yLjgzMi0yLjgwNy05LjA5IDkuMTc5LTkuMTc2LTkuMDg4LTIuODEgMi44MSA5LjE4NiA5LjEwNS05LjA5NSA5LjE4NCAyLjgxIDIuODEgOS4xMTItOS4xOTIgOS4xOCA5LjF6Ii8+PC9zdmc+">
+                    </a></div>
+                    <ul class="infoMember">현재접속자</ul>
+                </div>
+            <!-- 메세지를 보내거나 받으면 보이는 곳 -->
+                <div id="chat-list" class="chat-list"></div>
+                <div class="msgBox">
+                    <div class ="inputForm">
+                        <select class="nick-list">
+                            <option value="전체">전체</option>
+                        </select>
+                        <input type="text" id="message" style="height: 25px;"/>
+                        <!-- <span class="emoji"><i class="fa-regular fa-face-smile"></i></span> -->
+                        <button class='sendBtn' type="button" onclick="send();"><span><i class="fa-regular fa-paper-plane"></i></span></button>
+                    </div>
+                    <p class="arrow_box">친구들에게 인사해보세요!</p>
+                </div>
             </div>
         </div>
     </div>
@@ -289,6 +350,8 @@
     <script>
 
         $(document).ready(function() {
+
+            // 이모지 삽입
             $('#message').emojioneArea({
                 pickerPosition:'bottom',
                 tonesStyle: "bullet",
@@ -304,9 +367,26 @@
                 }
             });
 
+            // 첫입장시 말풍선
             $('.arrow_box').css('display','block');
-            
-        })
+
+
+            // 햄버거메뉴 클릭시 사이드바
+            $('.infoRoom').on('click', function() {
+                $('.info_bg').show();
+                $('.sidebar_info').show().animate({
+                    right:0
+                });
+            });
+            $('.closeBtn > a').on('click',function (){
+                $('.info_bg').hide();
+                $('.sidebar_info').animate({
+                    right:'-' + 50 + '%' },function() {
+                        $('.sidebar_info').hide();
+                    });
+                });
+            });
+
 
         var nickname = prompt('닉네임을 입력해주세요.'); //설정한 닉네임을 서버한테 알려줘야하는 것!
         
@@ -364,6 +444,7 @@
 
             div_user.classList.add('userInfo');
             div_user.appendChild(nick_image);
+            $(nick_image).attr('src','user.png');
             div_user.appendChild(span);
             //아이디. 즉, 닉네임 없을경우
             // if (msg == document.getElementById('message').value) {div.classList.add('mine');}
@@ -423,12 +504,18 @@
             UserList.value = "전체";
             users.appendChild(UserList);
 
+            let members = document.querySelector('.infoMember');
             for (let [key,value] of Object.entries(list)) { //리스트를 분해시키면서 for문을 도는 것  
                 
                 let UserList = document.createElement('option');
                 UserList.text = value;
                 UserList.value = value;
                 users.appendChild(UserList);
+
+                let memberList = document.createElement('li');
+                memberList.text = value;
+                members.appendChild(memberList); // 왜 안들어가는지 모르겠음 ㅠㅠ
+                // console.log(memberList.text);
             }
 
             // var a = {
@@ -440,6 +527,7 @@
             //     key = 'kye2', value - '2';
             // }) 이러한 방식이다~
             
+
         })
 
     </script>
