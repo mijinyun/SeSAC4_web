@@ -1,0 +1,14 @@
+/* 흔한 이름으로 설정해도 설정한 컴포넌트에서만 되는 것을 보고자 하는 것!!! */
+
+.box1 {
+    background-color: yellow;
+    border:3px solid orange;
+    color: green;
+    display: flex;
+    height: 150px;
+    align-items: center;
+}
+
+.center {
+    justify-content: center;
+}

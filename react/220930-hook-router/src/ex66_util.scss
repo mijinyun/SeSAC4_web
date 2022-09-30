@@ -1,0 +1,14 @@
+@mixin boxSize($size) { 
+    width: 100px / $size;
+    height: 100px / $size;
+    border-radius: 50px / $size;
+}
+
+$head-color: rgb(128, 193, 255);
+$body-color1: rgb(39, 87, 132);
+$body-color2: rgb(204, 230, 255);
+$body-color3: rgb(0, 132, 255);
+$body-color4: rgb(69, 236, 255);
+
+$eye-color1:white;
+$eye-color2:black;

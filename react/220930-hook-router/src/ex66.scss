@@ -1,0 +1,60 @@
+@import './ex66_util.scss';
+
+.larva {
+    position: relative;
+
+    .head {
+        background: $head-color;
+        position: absolute;
+        @include boxSize(1);
+
+        .eye1 {
+            @include boxSize(3);
+            background: $eye-color1;
+            position: relative;
+            top:20px;
+            left:20px;
+
+            .eye2 {
+                @include boxSize(5);
+                background: $eye-color2;
+                position: absolute;
+                top:5px;
+            }
+        }
+    }
+
+    .body1 {
+        background: $body-color1;
+        position: relative;
+        top:50px;
+        left:70px;
+        @include boxSize(1);
+    }
+    .body2 {
+        background: $body-color2;
+        position: relative;
+        left:60px;
+        top:20px;
+        @include boxSize(1);
+    }
+    .body3 {
+        background: $body-color3;
+        position: relative;
+        left:50px;
+        @include boxSize(1);
+    }
+    .body4 {
+        background: $body-color4;
+        position: relative;
+        left:50px;
+        @include boxSize(1);
+        z-index: 999;
+    }
+    .grass {
+        width: 300px;
+        position:absolute;
+        left: 70px;
+    }
+}
+

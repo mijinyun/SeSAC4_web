@@ -1,0 +1,25 @@
+@import './ex66_2_util.scss';
+
+.ani {
+    div { position: absolute; }
+
+    .pinkCircle {
+        @include circle(1);
+        background: $first;
+        animation: myanimation 3s 6;
+    }
+
+    .yellowCircle {
+        @include circle(1);
+        background: $second;
+        animation: myanimation2 3s 6;
+
+    }
+
+    .greenCircle {
+        @include circle(1);
+        background: $third;
+        animation: myanimation3 3s 6;
+
+    }
+}

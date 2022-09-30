@@ -1,0 +1,14 @@
+//재사용가능한 코드들만 따로 가져오기.
+
+$red: red;
+$orange: orange;
+$yellow: yellow;
+$green: green;
+$blue: blue;
+$indigo: indigo;
+$purple: purple;
+
+@mixin boxSize($size) { 
+    width: 100px;
+    height: 20px * $size;
+}

@@ -1,0 +1,28 @@
+
+$first: pink;
+$second: yellow;
+$third: green;
+
+@mixin circle($size) {
+    width:20px / $size;
+    height:20px / $size;
+    border-radius: 10px /$size;
+}
+
+// 1.mixin keyframes를 만들어줘서
+@mixin keyframes ($myanimation,$size) {
+    @keyframes #{$myanimation}{
+    0% {left: 0px; top:0px;}
+    25% {left: $size; top:0px;}
+    50% {left: $size; top:$size;}
+    75% {left: 0px; top:$size;}
+    100% {left: 0px; top:0px;}
+    }
+}
+
+// 2. 각 사이즈를 지정해주기위해서 include해서 정의해줌
+@include keyframes(myanimation,10px);
+@include keyframes(myanimation2,20px);
+@include keyframes(myanimation3,30px);
+
+//3. 본 scss파일에서 animation을 통해서 이름을 불러와주고 설정해줌.
