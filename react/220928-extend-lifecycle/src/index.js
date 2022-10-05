@@ -8,6 +8,8 @@ import Scroll from './Scroll';
 import ScrollBox  from './ScrollBox';
 import App3 from './App3';
 import LifeCycle from './LifeCycle';
+import App4 from './App4';
+import LifeCycle2 from './LifeCycle2';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +30,7 @@ root.render(
     {/* 2. createRef 사용해서 */}
     {/* <ScrollBox /> */}
 
-    <LifeCycle />
+    {/* <LifeCycle /> */}
+    <LifeCycle2 />
   </React.StrictMode>
 );
