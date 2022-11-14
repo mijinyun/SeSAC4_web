@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<form action="mvc-post" method="post">
+  <fieldset>
+    <label>이름
+      <input type="text" name="name" ><br>
+    </label>
+    <label>나이
+      <input type="text" name="age" ><br>
+    </label>
+    <br>
+    성별
+    <input type="radio" name="gender" id="gender_1" value="남" >
+    <label for = "gender_1">남</label>
+    <input type="radio" name="gender" id="gender_2" value="여" >
+    <label for = "gender_1">여</label>
+    <br>
+<!--    <label for="email"> E-mail-->
+<!--      <input type="email" id="email" name="email">-->
+<!--    </label>-->
+
+    <br>
+    <br>
+    관심사
+    <input type="checkbox" name="hobby" value="여행">여행
+    <input type="checkbox" name="hobby" value="패션">패션
+    <input type="checkbox" name="hobby" value="음식">음식
+    <br>
+    <br>
+
+  </fieldset>
+  <br>
+
+  <button>전송</button>
+</form>
+
+</body>
+</html>
