@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
-<form action="mvc-post" method="post">
+<form action="mvc-post" method="post" id="sendForm">
   <fieldset>
     <label>이름
       <input type="text" name="name" ><br>
@@ -21,9 +22,18 @@
     <input type="radio" name="gender" id="gender_2" value="여" >
     <label for = "gender_1">여</label>
     <br>
-<!--    <label for="email"> E-mail-->
-<!--      <input type="email" id="email" name="email">-->
-<!--    </label>-->
+
+    생년월일
+    <select name="year">
+      <option th:each="num: ${#numbers.sequence(1950,202)}" th:text="${num}"></option>
+    </select>년
+    <select name="month">
+      <option th:each="num: ${#numbers.sequence(1,12)}" th:text="${num}"></option>
+    </select>월
+    <select name="day">
+      <option th:each="num: ${#numbers.sequence(1,31)}" th:text="${num}"></option>
+    </select>일
+
 
     <br>
     <br>
@@ -37,8 +47,25 @@
   </fieldset>
   <br>
 
-  <button>전송</button>
+  <button type="button" onclick="send()">전송</button>
 </form>
+
+<script>
+  function send() {
+    var form = document.querySelector('#sendForm');
+      axios.post('/mvc-post',function() {
+        name : form.name.value;
+        age: form.age.value;
+        gender: form.gender.value;
+        year: form.year.value;
+        month: form.month.value;
+        day: form.day.value;
+        hobby: form.hobby.value;
+      }).then((res) => {
+        console.log(res.data);
+       });
+  }
+</script>
 
 </body>
 </html>
