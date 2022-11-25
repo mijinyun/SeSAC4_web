@@ -1,0 +1,69 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- <form id="form"> -->
+        이름 : <input type="text" id="name" name="name"><br>
+        내용 : <input type="text" id='content' name="content">
+        <button type="button" onclick="store.dispatch({type:'ADD', cnt: num, boards: [{name: name, content: content}]});">작성</button>
+        <!-- </form> -->
+        <hr>
+        <table border="1" cellspacing="0" cellpadding="10" style="width: 500px;" id="tb">
+            <tr>
+                <td>No.</td>
+                <td>이름</td>
+                <td>내용</td>
+                <td>삭제</td>
+            </tr>
+        </table>
+
+        <script>
+
+            var store = Redux.createStore(reducer);
+
+            var boards = [];
+            var num = document.getElementsByTagName('tr').length;
+
+            function reducer(state,action) {
+                if ( action.type === 'ADD' ){
+
+                    return {cnt: action.cnt, boards: [{no: num, name: action.boards.name, content: action.boards.content}]};
+                }
+            }
+
+
+            function add() {
+                var state = store.getState();
+
+                var cnt = 0;
+                // var form = document.querySelector('#form');
+                // var name = form.name.value;
+                // var content = form.content.value;
+
+                var name = document.querySelector('#name').value;
+                var content = document.querySelector('#content').value;
+                
+                var tb = document.querySelector('#tb');
+                var row = tb.insertRow();
+                var cell1 = row.insertCell();
+                var cell2 = row.insertCell();
+                var cell3 = row.insertCell();
+                var cell4 = row.insertCell();
+
+
+                cell1.innerHTML = state.boards[0].no;
+                cell2.innerHTML = state.boards[0].name;
+                cell3.innerHTML = state.boards[0].content;
+                cell4.innderHTML = `<button type='button'>삭제</button>`
+
+                console.log(state);
+            }
+            store.subscribe(add);
+
+        </script>
+    </div>
+</body>
+</html>

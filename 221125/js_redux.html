@@ -1,0 +1,65 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    
+    <style>
+        div { width: 100px; height: 100px; border: 1px solid black; display: flex; flex-direction: column; align-items: center;}
+    </style>
+</head>
+<body>
+    <div id="red">
+        <h3>red</h3>
+        <button type='button' onclick="store.dispatch({type: 'CHANGE', color : 'red'});">실행</button>
+    </div>
+    <div id="green">
+        <h3>green</h3>
+        <button type='button' onclick="store.dispatch({type: 'CHANGE', color : 'green'});">실행</button>
+    </div>
+    <div id="yellow">
+        <h3>yellow</h3>
+        <button type='button' onclick="store.dispatch({type: 'CHANGE', color : 'yellow'});">실행</button>
+    </div>
+
+    <script>
+        
+        // 요거는 한번 실행되고 그 다음부턴 dispatch로 변경되는 것.
+        function reducer(state, action) { // 자동으로 두개의 파라미터를 전달함. dispatch가 액션을 호출할때
+            // state: 현재상태 => 변경되기 전, 
+            // action : dispatch를 호출할 때 넣었던 객체
+            // return {color: 'red'}; // 리턴을 해줘야 reducer의 역할이 끝나는 것.
+            if (action.type === 'CHANGE') {
+                return { color: action.color }; 
+            }
+        }
+        var store = Redux.createStore(reducer); // 이함수를 통해서 정보를 저장할 store를 만들어줌. reducer함수를 보내줘야함.
+        // store를 만들때 reducer를 한번 실행시켜줌 최초로.
+
+
+        // function ToRed() {
+        //     var state = store.getState(); // {color: ~}
+        //     document.querySelector('#red').style.background = state.color;
+
+        // }
+        // function ToGreen() {
+        //     var state = store.getState();
+        //     document.querySelector('#green').style.background = state.color;
+        // }
+        // function ToYellow() {
+            
+        //     var state = store.getState();
+        //     document.querySelector('#yellow').style.background = state.color;
+        // }
+        // store.subscribe(ToRed); // state가 바뀔때마다 실행해라. 라는 뜻
+        // store.subscribe(ToGreen);
+        // store.subscribe(ToYellow);
+
+        function changeAll() {
+            var state = store.getState();
+            document.querySelector('#red').style.background = state.color;
+            document.querySelector('#green').style.background = state.color;
+            document.querySelector('#yellow').style.background = state.color;
+        }
+        store.subscribe(changeAll);
+    </script>
+</body>
+</html>
