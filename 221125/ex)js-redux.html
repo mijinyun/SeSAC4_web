@@ -1,0 +1,88 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+</head>
+<body>
+    이름 : <input type="text" id="name"> <br />
+        내용 : <input type="text" id="content"> 
+        <input type="button" value="작성" onclick="addBoard()">
+    
+        <hr>
+        
+        <table border="1" cellspacing="0" cellpadding="5" width="50%">
+            <tr>
+                <td>No.</td>
+                <td>이름</td>
+                <td>내용</td>
+                <td>삭제</td>
+            </tr>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+
+        <script>
+
+            function reducer(state,action) {
+                if (state === undefined) {
+                    return { cnt : 0, boards: []};
+                }
+                
+                if (action.type === 'ADD') {
+                    let boards = [...state.boards];
+                    boards.push(action.data);
+                    return { cnt: state.cnt +1 , boards: boards};
+                }
+
+                if (action.type === 'DELETE') {
+                    let boards = [...state.boards];
+                    boards = boards.filter((v) => v.no != action.no);
+                    return { cnt: state.cnt, boards: boards};
+                }
+
+            }
+            var store = Redux.createStore(reducer);
+            
+            //작성 버튼을 눌렀을 경우 data를 'ADD' type을 통해 전달
+            function addBoard() {
+                var state = store.getState();
+                let data = {
+                    no : state.cnt,
+                    name: document.querySelector('#name').value,
+                    content: document.querySelector('#content').value
+                }
+                store.dispatch({type:'ADD',data:data});
+                
+                document.querySelector('#name').value = '';
+                document.querySelector('#content').value = '';
+            }
+
+            //삭제 버튼을 눌렀을 경우 그 해당 no를 'DELETE' type을 통해 전달.
+            function deleteBoard(no) {
+                var state = store.getState();
+                store.dispatch({type:'DELETE', no:no})
+            }
+
+            //실제로 view에서 보여지게 하는 것. 그렇기 때문에 subscribe를 사용!
+            function getData() {
+                var state = store.getState();
+                let txt = "";
+
+                for (board of state.boards) {
+                    txt += 
+                        `<tr>
+                            <td>${board.no}</td>
+                            <td>${board.name}</td>
+                            <td>${board.content}</td>
+                            <td><button type="button" onclick="deleteBoard(${board.no});">삭제</button></td>
+                        <tr>`;
+                }
+
+                document.querySelector('#tbody').innerHTML = txt;
+            }
+            store.subscribe(getData);
+            getData();
+
+
+        </script>
+</body>
+</html>
