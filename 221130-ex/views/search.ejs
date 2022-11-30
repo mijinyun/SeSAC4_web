@@ -1,0 +1,77 @@
+<html>
+<head>
+  <title>Search</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div>
+    <form id="search_section">
+      검색 : <input type="text" id='search_content' name="search_content" placeholder="검색창">
+      <button type="button" onclick="search()">검색
+      <button type="button">관련순</button>
+      <button type="button">최신순</button>
+    </form>
+  </div>
+  <hr>
+  <div>
+    <div id="result_section">
+        <!-- 검색된 데이터 갯수만큼 반복문을 돌려서.... -->
+        <!--  제목, 이미지, 내용 등 나타나게 설정.  -->
+    </div>
+    <div id="page_number_section">
+      <!-- if문을 사용해서 리스트 갯수가 몇개 이하면 id= 설정해서 display none으로 설정 -->
+
+    </div>
+  </div>
+
+  <script>
+    function search() {
+      var form = document.getElementById('search_section');
+      var data = form.search_content.value;
+      // console.log(form.search_content.value);
+      axios({
+        method : 'get',
+        url : '/search/news',
+        params : {
+          query : data
+        }
+      })
+      .then((res) => { return res.data}) //만약 데이터를 받았다고 치자.
+      .then((data) => { 
+        console.log(data);
+        console.log(data.items);
+        
+        data.items.forEach((v) => {
+
+          var html = `<div>
+          <h3 style="cursor:pointer;" onclick="window.open('${v.link}') ">${v.title}</h3>
+          <div>${v.description}</div>
+          <hr>
+          </div>`;
+          document.getElementById('result_section').innerHTML += html;
+
+        })
+      })
+    }
+
+    // pagination
+    var first_section; 
+
+
+
+  </script>
+</body>
+</html>
+
+
+<!-- 아래 방식은 로컬에서 말고 바로 네이버로 요청을 보내는 방법이다! (단, 검색 api는 html js에서는 안됨. react의 경우는 바로 네이버로 요청이 가능하다. // html에서 하려면 proxy설정을 해줘야함.)
+  axios({
+        method : 'get',
+        url : 'https://openapi.naver.com/v1/search/news?query=' + encodeURI(data),
+        options: {
+        headers: {'X-Naver-Client-Id':'EqQjdxZAA3_CVXsoDeVg', 'X-Naver-Client-Secret': 'hTMy6gJOY9'}
+        }
+      })
+      .then((res) => { console.log(res)}); 
+
+ -->
